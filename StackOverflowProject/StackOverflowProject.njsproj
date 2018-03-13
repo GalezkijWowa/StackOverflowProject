@@ -13,7 +13,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>fb592320-0679-432b-9c80-e93e28f712a4</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>app.js</StartupFile>
+    <StartupFile>server.js</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -30,9 +30,57 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="app.js" />
+    <Compile Include="manage.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="middleware\checkAuth.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="middleware\errorHandler.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="middleware\index.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="models\answer.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="models\question.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="models\tag.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="models\user.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="models\vote.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="routes\authentication.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="routes\error.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="routes\register.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="server.js" />
     <Compile Include="routes\index.js" />
     <Compile Include="routes\users.js" />
+    <Compile Include="utils\index.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="utils\log.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="utils\mongoose.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="utils\validate.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Content Include="package.json" />
     <Content Include="public\stylesheets\main.css" />
     <Content Include="README.md" />
@@ -41,6 +89,9 @@
     <Content Include="views\error.pug" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="middleware\" />
+    <Folder Include="models\" />
+    <Folder Include="utils\" />
     <Folder Include="public\" />
     <Folder Include="public\images\" />
     <Folder Include="public\javascripts\" />
