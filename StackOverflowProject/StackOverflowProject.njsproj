@@ -30,6 +30,9 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="config\index.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="manage.js">
       <SubType>Code</SubType>
     </Compile>
@@ -63,12 +66,17 @@
     <Compile Include="routes\error.js">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="routes\register.js">
+    <Compile Include="routes\main.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="routes\profile.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="routes\questions.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="server.js" />
     <Compile Include="routes\index.js" />
-    <Compile Include="routes\users.js" />
     <Compile Include="utils\index.js">
       <SubType>Code</SubType>
     </Compile>
@@ -81,6 +89,9 @@
     <Compile Include="utils\validate.js">
       <SubType>Code</SubType>
     </Compile>
+    <Content Include="config\config.json">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="package.json" />
     <Content Include="public\stylesheets\main.css" />
     <Content Include="README.md" />
@@ -91,6 +102,7 @@
   <ItemGroup>
     <Folder Include="middleware\" />
     <Folder Include="models\" />
+    <Folder Include="config\" />
     <Folder Include="utils\" />
     <Folder Include="public\" />
     <Folder Include="public\images\" />
