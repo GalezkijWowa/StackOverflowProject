@@ -95,9 +95,33 @@
     <Content Include="package.json" />
     <Content Include="public\stylesheets\main.css" />
     <Content Include="README.md" />
-    <Content Include="views\index.pug" />
-    <Content Include="views\layout.pug" />
-    <Content Include="views\error.pug" />
+    <Content Include="views\authentication\login.hbs">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\authentication\register.hbs">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\main\home.hbs">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\partials\layout.hbs">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\profile\createQuestion.hbs">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\profile\editAnswer.hbs">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\profile\editQuestion.hbs">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\questions\list.hbs">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\questions\question.hbs">
+      <SubType>Code</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="middleware\" />
@@ -110,6 +134,11 @@
     <Folder Include="public\stylesheets\" />
     <Folder Include="routes\" />
     <Folder Include="views\" />
+    <Folder Include="views\authentication\" />
+    <Folder Include="views\main\" />
+    <Folder Include="views\questions\" />
+    <Folder Include="views\profile\" />
+    <Folder Include="views\partials\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />

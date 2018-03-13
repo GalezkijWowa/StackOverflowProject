@@ -23,7 +23,6 @@ function createBaseUser(cb) {
     var admin = new User({
         username: 'admin',
         password: config.get('project:admin:password'),
-        email: config.get('project:admin:email'),
         role: 1
     });
     admin.save(function () {

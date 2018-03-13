@@ -8,14 +8,17 @@ var http = require('http');
 var config = require('./config');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var hbs = require('hbs');
 
 var routes = require('./routes');
 
 var app = express();
 
 // view engine setup
+hbs.registerPartials(__dirname + "/views/partials");
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+app.set("view engine", "hbs");
+app.use(express.static(__dirname + "/public"));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));

@@ -3,15 +3,15 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/profile/createQuestion', function (req, res) {
-    res.send('CREATE QUSTION');
+    res.render('profile/createQuestion.hbs');
 });
 
 router.get('/profile/editQuestion', function (req, res) {
-    res.send('EDIT QUESTION');
+    res.render('profile/editQuestion.hbs');
 });
 
 router.get('/profile/editAnswer', function (req, res) {
-    res.send('EDIT ANSWER');
+    res.render('profile/createAnswer.hbs');
 });
 
 module.exports = router;

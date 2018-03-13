@@ -3,11 +3,11 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/questions/all', function (req, res) {
-    res.send('All questions');
+    res.send('questons/list');
 });
 
 router.get('/questions/:id', function (req, res) {
-    res.send('Direct question');
+    res.send('questons/question');
 });
 
 
