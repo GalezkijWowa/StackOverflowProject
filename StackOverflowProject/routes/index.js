@@ -1,20 +1,4 @@
-﻿//var main = require('./main'),
-//    register = require('./register'),
-//    users = require('./users'),
-//    authentication = require('./authentication'),
-//    error = require('./error');
-
-//module.exports = function (app) {
-//    app.get('/', main.home);
-
-//    app.post('/register', register.requestRegistration);
-
-//    app.get('/users', authentication.users);
-//    app.get('/users/:id', authentication.user);
-
-//    app.get('*', error['404']);
-//};
-
+﻿var check = require('../middleware/checkAuth')
 
 'use strict';
 var express = require('express'),
@@ -25,10 +9,10 @@ var express = require('express'),
         authentication = require('./authentication'),
         error = require('./error');
 
-router.get('/', main.home);
+router.get('/',  main.home);
 router.get('/auth/*', authentication);
-router.get('/questions/*', questions);
-router.get('/profile/*', profile);
+router.get('/questions/*', check, questions);
+router.get('/profile/*', check, profile);
 
 
 module.exports = router;
