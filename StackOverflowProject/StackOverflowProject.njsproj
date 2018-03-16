@@ -33,6 +33,21 @@
     <Compile Include="config\index.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="database\answerDao.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="database\index.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="database\quastionDao.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="database\tagDao.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="database\userDao.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="manage.js">
       <SubType>Code</SubType>
     </Compile>
@@ -48,6 +63,9 @@
     <Compile Include="models\answer.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="models\answerVote.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="models\question.js">
       <SubType>Code</SubType>
     </Compile>
@@ -57,7 +75,7 @@
     <Compile Include="models\user.js">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="models\vote.js">
+    <Compile Include="models\quationVote.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="public\bootstrap-3.3.7-dist\js\bootstrap.js" />
@@ -143,6 +161,7 @@
     <Folder Include="middleware\" />
     <Folder Include="models\" />
     <Folder Include="config\" />
+    <Folder Include="database\" />
     <Folder Include="public\bootstrap-3.3.7-dist\" />
     <Folder Include="public\bootstrap-3.3.7-dist\css\" />
     <Folder Include="public\bootstrap-3.3.7-dist\fonts\" />

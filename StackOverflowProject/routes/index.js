@@ -11,6 +11,8 @@ var express = require('express'),
 
 router.get('/',  main.home);
 router.get('/auth/*', authentication);
+router.post('/auth/*', authentication);
+
 router.get('/questions/*', check, questions);
 router.get('/profile/*', check, profile);
 

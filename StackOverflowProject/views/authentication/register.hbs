@@ -18,9 +18,9 @@
                     <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="/auth/login">Sign In</a></div>
                 </div>
                 <div class="panel-body">
-                    <form id="signupform" class="form-horizontal" role="form">
+                    <form id="signupform" class="form-horizontal" role="form" action="/auth/register" method = "post">
                         <div class="form-group">
-                            <label for="userName" class="col-md-3 control-label">User Name</label>
+                            <label for="username" class="col-md-3 control-label">User Name</label>
                             <div class="col-md-9">
                                 <input type="text" class="form-control" name="username" placeholder="User Name">
                             </div>
@@ -28,19 +28,19 @@
                         <div class="form-group">
                             <label for="password" class="col-md-3 control-label">Password</label>
                             <div class="col-md-9">
-                                <input type="password" class="form-control" name="passwd" placeholder="Password">
+                                <input type="password" class="form-control" name="password" placeholder="Password">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="confirm-password" class="col-md-3 control-label">Confirm password</label>
+                            <label for="confirmpassword" class="col-md-3 control-label">Confirm password</label>
                             <div class="col-md-9">
-                                <input type="password" class="form-control" name="confirm-password" placeholder="Confirm password">
+                                <input type="password" class="form-control" name="confirmpassword" placeholder="Confirm password">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-offset-3 col-md-9">
-                                <button id="btn-signup" type="button" class="btn btn-info"><i class="icon-hand-right"></i> Sign Up</button>
+                                <p><button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> Sign Up</button></p>
                             </div>
                         </div>
                     </form>

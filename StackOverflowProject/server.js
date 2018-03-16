@@ -9,10 +9,10 @@ var config = require('./config');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var hbs = require('hbs');
-
+var mongoose = require("mongoose");
 var routes = require('./routes');
-
 var app = express();
+var session = require('../node_modules/session');
 
 // view engine setup
 hbs.registerPartials(__dirname + "/views/partials");
@@ -26,8 +26,27 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use(routes);
+
+//var MongoStore = require('connect-mongo');
+
+//app.use(session({
+//    secret: config.get('session:secret'),
+//    key: config.get('session:key'),
+//    cookie: config.get('session:cookie'),
+//    store: new M
+//}));
+
+//app.use(session({
+//    secret: config.get('session:secret'),
+//    key: config.get('session:key'),
+//    cookie: config.get('session:cookie'),
+//    store: new MongoStore({ mongooseConnection: mongoose.connection })
+//    }));
+//app.use(session);
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

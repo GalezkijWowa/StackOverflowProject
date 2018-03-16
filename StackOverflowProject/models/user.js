@@ -1,7 +1,7 @@
-﻿var crypto = require('crypto'),
-    mongoose = require('../utils/mongoose'),
-    Schema = mongoose.Schema,
-    async = require('async');
+﻿var crypto = require('crypto');
+var mongoose = require('mongoose');
+Schema = mongoose.Schema;
+async = require('async');
 
 var User = new Schema({
     username: {
@@ -13,20 +13,19 @@ var User = new Schema({
         type: String,
         required: true
     },
-    salt: {
+    role: {
         type: String,
         required: true
     }
 });
 
 User.methods.encryptPassword = function (password) {
-    return crypto.createHmac('sha1', this.salt).update(password).digest('hex');
+    return crypto.createHmac('sha1', "A").update(password).digest('hex');
 };
 
 User.virtual('password')
     .set(function (password) {
         this._plainPassword = password;
-        this.salt = Math.random() + '';
         this.hashedPassword = this.encryptPassword(password);
     })
     .get(function () {
