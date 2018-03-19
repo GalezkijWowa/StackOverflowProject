@@ -6,19 +6,14 @@ var database = require('../database/index');
 router.get('/auth/register', function (req, res) {
     res.render('authentication/register.hbs');
 });
-
-router.get('/auth/login', function (req, res) {
-    res.render('authentication/login.hbs');
-});
-
 router.post('/auth/register', function (req, res) {
     database.addUser(req.body.username, req.body.password, "user");
     //database.addQuestion(req.body._id, "Test title", "test description");
-    res.send(
-        req.body.username + '\n' +
-        req.body.confirmpassword + '\n' +
-        req.body.password
-    );
+    res.redirect("/");
+});
+
+router.get('/auth/login', function (req, res) {
+    res.render('authentication/login.hbs');
 });
 
 router.post('/auth/login', function (req, res) {

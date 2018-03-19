@@ -15,10 +15,16 @@ var addQuestion = function (author, title, description, answers=null, tags=null)
         mongoose.disconnect();
     });
 }
-
 var getAllQuestions = function () {
-    return Question;
+    result = Question.find({});
+    return result;
 }
+
+//var getAllQuestions = function () {
+//    Question.find({}, function (err, questions) {
+//        res.send(questions);
+//    })
+//}
 
 var getTagQuestions = function (tagId) { }
 var getQuestion = function (questionId) { }
@@ -28,7 +34,7 @@ var addVote = function (questionId, vote) { }
 
 module.exports.addQuestion = addQuestion;
 module.exports.getAllQuestions = getAllQuestions;
-module.exports.getTagQuestions = getTagQuestions
+module.exports.getTagQuestions = getTagQuestions;
 module.exports.getQuestion = getQuestion;
 module.exports.editQuestion = editQuestion;
 module.exports.deleteQuestion = deleteQuestion;

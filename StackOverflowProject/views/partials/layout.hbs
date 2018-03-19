@@ -20,13 +20,11 @@
                 <a class="navbar-brand" href="/">stack <b>overflow</b></a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li><a href="/questions/all">All questions</a></li>
-                </ul>
                 <ul class="nav navbar-nav navbar-right">
 
                     {{#if user}}
-                        <li><a href="/auth/register"><span class="glyphicon glyphicon-home"></span> {{user.username}}</a></li>
+                        <li><a href="/questions/all"><span class="glyphicon glyphicon-education"></span> All questions</a></li>
+                        <li><a href="/profile"><span class="glyphicon glyphicon-home"></span> {{user.username}}</a></li>
                         <li><a href="/auth/logout"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
                     {{else}}
                         <li><a href="/auth/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>

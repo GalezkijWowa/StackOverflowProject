@@ -14,6 +14,7 @@ router.get('/auth/*', authentication);
 router.post('/auth/*', authentication);
 
 router.get('/questions/*', check, questions);
+router.get('/profile', check, profile);
 router.get('/profile/*', check, profile);
 
 

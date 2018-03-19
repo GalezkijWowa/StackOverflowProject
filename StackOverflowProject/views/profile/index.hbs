@@ -1,1 +1,58 @@
-﻿
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Profile</title>
+</head>
+<body>
+    {{> layout}}
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h3 style="text-align:center">{{user.name}}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Your manuals</h3>
+                </div>
+                <table class="table">
+                    @{
+                        var manuals= db.Manuals.Where(manual => manual.AuthorId == Model.Id);
+                    }
+                    @foreach (Manual manual in manuals)
+                    {
+                    <tr>
+                        <td><a asp-controller="Home" asp-action="Manual" asp-route-id="@manual.ManualId">@Html.Raw(@manual.Title)</a></td>
+                        <td>
+                            <form method="post">
+                                <div class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                        <li><a asp-action="Delete" asp-route-id="@manual.ManualId">Delete</a></li>
+                                        <li><a asp-action="Edit" asp-route-id="@manual.ManualId">Edit</a></li>
+                                    </ul>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                    }
+                </table>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <form method="post">
+                <button type="submit" class="btn btn-primary">
+                    Create new
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
