@@ -60,6 +60,9 @@
     <Compile Include="middleware\index.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="middleware\loadUser.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="models\answer.js">
       <SubType>Code</SubType>
     </Compile>
@@ -148,6 +151,9 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="views\profile\editQuestion.hbs">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\profile\index.hbs">
       <SubType>Code</SubType>
     </Content>
     <Content Include="views\questions\list.hbs">

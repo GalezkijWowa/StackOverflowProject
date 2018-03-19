@@ -30,7 +30,7 @@ router.post('/auth/login', function (req, res) {
         if (user) {
             if (user.checkPassword(password)) {
                 req.session.user = user._id;
-                res.send("fine");
+                res.redirect("/");
             } else {
                 res.send('ERROR');
             }
@@ -40,5 +40,9 @@ router.post('/auth/login', function (req, res) {
     })
 });
 
+router.get('/auth/logout', function (req, res) {
+    req.session.destroy();
+    res.redirect('/');
+});
 
 module.exports = router;

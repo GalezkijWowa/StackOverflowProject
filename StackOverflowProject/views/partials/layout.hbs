@@ -4,11 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
-
     <link rel="stylesheet" href="/stylesheets/main.css" />
-    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" href="../../public/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
-
 </head>
 
 <body>
@@ -25,15 +22,16 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
                     <li><a href="/questions/all">All questions</a></li>
-                    <li><a href="#">Profile</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <!--<% if (user) { %>
-                    <li><a href="/auth/register"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
-                    <% } else { %>
-                    <% } %>-->
-                    <li><a href="/auth/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li><a href="/auth/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+                    {{#if user}}
+                        <li><a href="/auth/register"><span class="glyphicon glyphicon-home"></span> {{user.username}}</a></li>
+                        <li><a href="/auth/logout"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
+                    {{else}}
+                        <li><a href="/auth/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                        <li><a href="/auth/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    {{/if}}
                 </ul>
             </div>
         </div>

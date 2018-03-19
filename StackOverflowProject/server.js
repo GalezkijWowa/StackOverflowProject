@@ -37,7 +37,7 @@ app.use(session({
     cookie: config.get('session:cookie'),
     store: new MongoStore({ url: config.get('db:connection')})
 }));
-
+app.use(require("./middleware/loadUser"));
 app.use(routes);
 
 // catch 404 and forward to error handler
