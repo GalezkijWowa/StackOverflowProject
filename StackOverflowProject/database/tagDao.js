@@ -1,4 +1,7 @@
-﻿
+﻿var mongoose = require("mongoose");
+var Tag = require('../models/tag')
+var Schema = mongoose.Schema;
+mongoose.Promise = global.Promise;
 
 var getTags = function (questionId) { }
 var addTag = function () { }

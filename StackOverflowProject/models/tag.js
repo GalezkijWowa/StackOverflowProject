@@ -1,6 +1,4 @@
-﻿var crypto = require('crypto');
-var mongoose = require('mongoose');
-var Question = require('./Question');
+﻿var mongoose = require('mongoose');
 Schema = mongoose.Schema;
 
 
@@ -10,6 +8,6 @@ var Tag = new Schema({
         unique: true,
         required: true
     },
-    questions: [Quastion]
+    questions: [{ type: Schema.Types.ObjectId, ref: 'Question' }],
 });
 module.exports = mongoose.model('Tag', Tag);

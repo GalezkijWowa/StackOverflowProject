@@ -10,7 +10,6 @@ var addUser = function (username, password, role) {
         role: role
     });
     user.save(function (err) {
-        mongoose.disconnect();
     });
 }
 

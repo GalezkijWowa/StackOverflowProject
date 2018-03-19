@@ -1,13 +1,9 @@
-﻿var crypto = require('crypto');
-var mongoose = require('mongoose');
+﻿var mongoose = require('mongoose');
 Schema = mongoose.Schema;
 
 
 var Answer = new Schema({
-    author: {
-        type: String,
-        required: true
-    },
+    author: { type: Schema.Types.ObjectId, ref: 'User' },
     text: {
         type: String,
         required: true

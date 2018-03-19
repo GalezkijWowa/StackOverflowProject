@@ -1,14 +1,8 @@
-﻿var crypto = require('crypto');
-var mongoose = require('mongoose');
-var Tag = require('./tag');
-var Answer = require('./answer');
+﻿var mongoose = require('mongoose');
 Schema = mongoose.Schema;
 
-var Quastion = new Schema({
-    author: {
-        type: String,
-        required: true
-    },
+var Question = new Schema({
+    author: { type: Schema.Types.ObjectId, ref: 'User' },
     title: {
         type: String,
         required: true
@@ -21,8 +15,8 @@ var Quastion = new Schema({
         type: Date,
         default: Date.now
     },
-    answers: [Answer],
-    tags: [Tag],
+    answers: [{ type: Schema.Types.ObjectId, ref: 'Answer' }],
+    tags: [{ type: Schema.Types.ObjectId, ref: 'Tag' }],
     rating: {
         type: Number,
         default: 0
@@ -30,4 +24,4 @@ var Quastion = new Schema({
 });
 
 
-module.exports = mongoose.model('Quastion', Quastion);
+module.exports = mongoose.model('Question', Question);

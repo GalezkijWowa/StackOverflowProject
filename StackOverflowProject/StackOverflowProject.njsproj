@@ -39,7 +39,7 @@
     <Compile Include="database\index.js">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="database\quastionDao.js">
+    <Compile Include="database\questionDao.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="database\tagDao.js">
@@ -75,7 +75,7 @@
     <Compile Include="models\user.js">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="models\quationVote.js">
+    <Compile Include="models\questionVote.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="public\bootstrap-3.3.7-dist\js\bootstrap.js" />

@@ -12,7 +12,8 @@ var hbs = require('hbs');
 var mongoose = require("mongoose");
 var routes = require('./routes');
 var app = express();
-var session = require('../node_modules/session');
+
+var session = require('express-session');
 
 // view engine setup
 hbs.registerPartials(__dirname + "/views/partials");
@@ -26,27 +27,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+mongoose.connect(config.get('db:connection'));
+
+var MongoStore = require('connect-mongo')(session);
+app.use(session({
+    secret: config.get('session:secret'),
+    key: config.get('session:key'),
+    cookie: config.get('session:cookie'),
+    store: new MongoStore({ url: config.get('db:connection')})
+}));
+
 app.use(routes);
-
-//var MongoStore = require('connect-mongo');
-
-//app.use(session({
-//    secret: config.get('session:secret'),
-//    key: config.get('session:key'),
-//    cookie: config.get('session:cookie'),
-//    store: new M
-//}));
-
-//app.use(session({
-//    secret: config.get('session:secret'),
-//    key: config.get('session:key'),
-//    cookie: config.get('session:cookie'),
-//    store: new MongoStore({ mongooseConnection: mongoose.connection })
-//    }));
-//app.use(session);
-
-
-
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

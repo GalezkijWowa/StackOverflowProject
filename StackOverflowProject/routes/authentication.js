@@ -13,6 +13,7 @@ router.get('/auth/login', function (req, res) {
 
 router.post('/auth/register', function (req, res) {
     database.addUser(req.body.username, req.body.password, "user");
+    //database.addQuestion(req.body._id, "Test title", "test description");
     res.send(
         req.body.username + '\n' +
         req.body.confirmpassword + '\n' +
@@ -28,7 +29,8 @@ router.post('/auth/login', function (req, res) {
         if (err) return next(err);
         if (user) {
             if (user.checkPassword(password)) {
-                res.send('Fine');
+                req.session.user = user._id;
+                res.send("fine");
             } else {
                 res.send('ERROR');
             }
