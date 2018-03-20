@@ -4,15 +4,16 @@ var questionDao = require('./questionDao');
 var answerDao = require('./answerDao');
 var tagDao = require('./tagDao');
 
-module.exports.addUser = userDao.addUser
+module.exports.addUser = userDao.addUser;
 
 module.exports.addQuestion = questionDao.addQuestion;
 module.exports.getAllQuestions = questionDao.getAllQuestions;
-module.exports.getTagQuestions = questionDao.getTagQuestions
+module.exports.getTagQuestions = questionDao.getTagQuestions;
 module.exports.getQuestion = questionDao.getQuestion;
 module.exports.editQuestion = questionDao.editQuestion;
 module.exports.deleteQuestion = questionDao.deleteQuestion;
 module.exports.addVote = questionDao.addVote;
+module.exports.userQuestions = questionDao.userQuestions;
 
 module.exports.addAnswer = answerDao.addAnswer;
 module.exports.getAnswers = answerDao.getAnswers;

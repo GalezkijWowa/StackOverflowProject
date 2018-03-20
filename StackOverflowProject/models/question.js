@@ -2,7 +2,11 @@
 Schema = mongoose.Schema;
 
 var Question = new Schema({
-    author: { type: Schema.Types.ObjectId, ref: 'User' },
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
     title: {
         type: String,
         required: true

@@ -3,9 +3,50 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title></title>
+
+    <link rel="stylesheet" href="../../public/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/stylesheets/main.css" />
+    <title>Create</title>
 </head>
 <body>
-
+    {{> layout}}
+    <div class="blog">
+        <div class="container">
+            <div class="row">
+                <div class="[ col-xs-12 col-sm-offset-0 col-sm-10 ]">
+                    <div class="panel panel-primary">
+                        <div class="panel-body">
+                            <h4>Create<span class="glyphicon glyphicon-education"></span></h4>
+                            <hr />
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <form id="createform" class="form-horizontal" method="post" action="/profile/createQuestion">
+                                        <div class="form-group">
+                                            <label for="title" class="control-label">Title</label>
+                                            <input name="title" class="form-control" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="description" class="control-label">Text</label>
+                                            <textarea id="message" name="description" class="form-control" rows="10" value=""></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Category" class="col-md-2 control-label"></label>
+                                            <div class="col-md-10">
+                                                <select asp-for="Category" asp-items="Html.GetEnumSelectList<ECategory>()" class="form-control"></select>
+                                                <span asp-validation-for="Category" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <p><button id="btn-signup" type="submit" class="btn btn-primary"><i class="icon-hand-right"></i> Save</button></p>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

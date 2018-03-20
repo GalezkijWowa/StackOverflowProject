@@ -32,7 +32,7 @@ router.post('/auth/login', function (req, res) {
         } else {
             res.send('User Not found');
         }
-    })
+    });
 });
 
 router.get('/auth/logout', function (req, res) {

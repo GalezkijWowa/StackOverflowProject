@@ -11,8 +11,8 @@ var addQuestion = function (author, title, description, answers=null, tags=null)
         answers: answers,
         tags: tags
     });
-    question.save(function (err) {
-        mongoose.disconnect();
+    question.save(function (err, next) {
+        if (err) { next(err) }
     });
 }
 var getAllQuestions = function () {
@@ -20,14 +20,17 @@ var getAllQuestions = function () {
     return result;
 }
 
-//var getAllQuestions = function () {
-//    Question.find({}, function (err, questions) {
-//        res.send(questions);
-//    })
-//}
+var getQuestion = function (questionId) {
+    result = Question.findById(id = questionId);
+    return result;
+}
+
+var userQuestions = function (userId) {
+    result = Question.find({ author: userId});
+    return result;
+}
 
 var getTagQuestions = function (tagId) { }
-var getQuestion = function (questionId) { }
 var editQuestion = function (questionId) { }
 var deleteQuestion = function (questionId) { }
 var addVote = function (questionId, vote) { }
@@ -39,3 +42,4 @@ module.exports.getQuestion = getQuestion;
 module.exports.editQuestion = editQuestion;
 module.exports.deleteQuestion = deleteQuestion;
 module.exports.addVote = addVote;
+module.exports.userQuestions = userQuestions;

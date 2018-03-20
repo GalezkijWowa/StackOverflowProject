@@ -2,27 +2,20 @@
 var express = require('express');
 var router = express.Router();
 var Question = require('../models/question');
-//var database = require('../database/index');
-var database = require('../database/questionDao');
-
+var database = require('../database/index');
 
 router.get('/questions/all', function (req, res) {
-    result = database.getAllQuestions();
+    result = database.getAllQuestions(req.user._id);
     result.exec(function (err, questions) {
         res.render('questions/list.hbs', { questions: questions});
     });
 });
 
-//router.get('/questions/all', function (req, res) {
-
-//    Question.find({}, function (err, allQuestions) {
-//        res.render('questions/list.hbs', { questions: allQuestions });
-//    });
-//});
-
 router.get('/questions/:id', function (req, res) {
-    res.send('questons/question');
+    result = database.getQuestion(req.params.id);
+    result.exec(function (err, question) {
+        res.render('questions/question.hbs', { question: question });
+    });
 });
-
 
 module.exports = router;

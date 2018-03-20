@@ -10,7 +10,7 @@
         <ul class="quesions_list">
             {{#each questions}}
             <li>
-                <h2>{{this.title}}</h2>
+                <h2><a href="/questions/{{this._id}}">{{this.title}}</a></h2>
                 <h3>{{this.description}}</h3>
             </li>
             {{/each}}
