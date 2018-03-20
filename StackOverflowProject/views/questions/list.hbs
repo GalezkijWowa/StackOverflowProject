@@ -3,17 +3,40 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title>Questions</title>
+    
 </head>
-    <body>
-        {{> layout}}
-        <ul class="quesions_list">
-            {{#each questions}}
-            <li>
-                <h2><a href="/questions/{{this._id}}">{{this.title}}</a></h2>
-                <h3>{{this.description}}</h3>
-            </li>
-            {{/each}}
-        </ul>
-    </body>
-</html>
+<body>
+    
+    <div class="blog">
+        <div class="container">
+            <div class="row">
+                <div class="[ col-xs-12 col-sm-offset-0 col-sm-10 ]">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">ALL QUESTIONS</h3>
+                    </div>
+                    <table class="table">
+                    {{#each questions}}
+                    <tr>
+                        <td><h2><a href="/questions/{{this._id}}">{{this.title}}</a></h2></td>
+                        <td>
+                            <form method="post">
+                                <div class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                        <li><a asp-action="Delete" asp-route-id="@manual.ManualId">Delete</a></li>
+                                        <li><a asp-action="Edit" asp-route-id="@manual.ManualId">Edit</a></li>
+                                    </ul>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                    {{/each}}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>        

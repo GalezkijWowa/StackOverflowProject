@@ -1,7 +1,14 @@
 ﻿var mongoose = require("mongoose");
 var Question = require("../models/question");
+var async = require('async');
 var Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
+
+
+var getQuestion = function (questionId) {
+    result = Question.findById(id = questionId);
+    return result;
+}
 
 var addQuestion = function (author, title, description, answers=null, tags=null) {
     var question = new Question({
@@ -15,13 +22,9 @@ var addQuestion = function (author, title, description, answers=null, tags=null)
         if (err) { next(err) }
     });
 }
+
 var getAllQuestions = function () {
     result = Question.find({});
-    return result;
-}
-
-var getQuestion = function (questionId) {
-    result = Question.findById(id = questionId);
     return result;
 }
 

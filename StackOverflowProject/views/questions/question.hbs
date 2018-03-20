@@ -17,7 +17,7 @@
                     <h2>{{question.title}}</h2>
                     <hr />
                     <h5>{{question.description}}</h5>
-                
+
                     <b id="userName"><span class="glyphicon glyphicon-user"></span>{{user.username}}</b>
                     <hr />
                     <form id="addanswer" class="form-horizontal" method="post" action="/profile/addAnswer">
@@ -30,14 +30,16 @@
                         </div>
                     </form>
                     <hr />
-
-                    <table class="table">
-                        {{#each answers}}
-                        <tr>
-                            <td><h2>{{this.text}}</h2></td>
-                        </tr>
-                        {{/each}}
-                    </table>
+                    {{#each answers}}
+                    <b><span class="glyphicon glyphicon-user"></span>{{this.author}}</b>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="col-md-11">
+                                <p>{{this.text}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
                 </div>
             </div>
         </div>

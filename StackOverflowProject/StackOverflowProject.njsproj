@@ -130,6 +130,9 @@
     <Content Include="public\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="public\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="public\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="public\stylesheets\list.css">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="public\stylesheets\main.css" />
     <Content Include="README.md" />
     <Content Include="views\authentication\login.hbs">

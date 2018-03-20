@@ -24,12 +24,18 @@ router.get('/profile/createQuestion', function (req, res) {
     res.render('profile/createQuestion.hbs');
 });
 
-router.get('/profile/editQuestion', function (req, res) {
-    res.render('profile/editQuestion.hbs');
+router.post('/profile/editQuestion', function (req, res) {
+    res.send("EDIT QUESTION");
+    //res.render('profile/editQuestion.hbs');
 });
 
 router.get('/profile/editAnswer', function (req, res) {
     res.render('profile/createAnswer.hbs');
+});
+
+router.post('/profile/deleteQuestion', function (req, res) {
+    //res.render('profile/createAnswer.hbs');
+    res.send("DELETE QUESTION");
 });
 
 module.exports = router;
