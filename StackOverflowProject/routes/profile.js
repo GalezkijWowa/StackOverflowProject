@@ -25,7 +25,7 @@ router.get('/profile/createQuestion', function (req, res) {
 });
 
 router.post('/profile/editQuestion', function (req, res) {
-    res.send("EDIT QUESTION");
+    res.send("EDIT QUESTION" + req.body.questionId);
     //res.render('profile/editQuestion.hbs');
 });
 
@@ -34,8 +34,9 @@ router.get('/profile/editAnswer', function (req, res) {
 });
 
 router.post('/profile/deleteQuestion', function (req, res) {
-    //res.render('profile/createAnswer.hbs');
-    res.send("DELETE QUESTION");
+    var result = database.deleteQuestion(req.body.questionId);
+    result.exec();
+    res.redirect('/profile');
 });
 
 module.exports = router;

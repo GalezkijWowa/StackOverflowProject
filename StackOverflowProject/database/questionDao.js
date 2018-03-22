@@ -35,7 +35,9 @@ var userQuestions = function (userId) {
 
 var getTagQuestions = function (tagId) { }
 var editQuestion = function (questionId) { }
-var deleteQuestion = function (questionId) { }
+var deleteQuestion = function (questionId) {
+    return Question.findByIdAndRemove(id = questionId);
+}
 var addVote = function (questionId, vote) { }
 
 module.exports.addQuestion = addQuestion;

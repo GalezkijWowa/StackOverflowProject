@@ -84,6 +84,9 @@
     <Compile Include="public\bootstrap-3.3.7-dist\js\bootstrap.js" />
     <Compile Include="public\bootstrap-3.3.7-dist\js\bootstrap.min.js" />
     <Compile Include="public\bootstrap-3.3.7-dist\js\npm.js" />
+    <Compile Include="public\javascripts\profile.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="routes\authentication.js">
       <SubType>Code</SubType>
     </Compile>
