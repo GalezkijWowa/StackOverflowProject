@@ -2,6 +2,8 @@
 var express = require('express');
 var router = express.Router();
 var database = require('../database/index');
+var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 
 router.get('/profile', function (req, res) {
     result = database.userQuestions(req.user._id);
@@ -11,7 +13,7 @@ router.get('/profile', function (req, res) {
 });
 
 router.post('/profile/addAnswer', function (req, res) {
-    database.addAnswer(req.body.questionId, req.user._id, req.body.text);
+    database.addAnswer(req.body.questionId, req.user.username ,req.user._id, req.body.text);
     res.redirect("/questions/" + req.body.questionId);
 });
 
@@ -25,8 +27,8 @@ router.get('/profile/createQuestion', function (req, res) {
 });
 
 router.post('/profile/editQuestion', function (req, res) {
-    res.send("EDIT QUESTION" + req.body.questionId);
-    //res.render('profile/editQuestion.hbs');
+    database.editQuestion(req.body.questionId, req.body.title, req.body.description);
+    res.redirect("/profile");
 });
 
 router.get('/profile/editAnswer', function (req, res) {
@@ -34,9 +36,40 @@ router.get('/profile/editAnswer', function (req, res) {
 });
 
 router.post('/profile/deleteQuestion', function (req, res) {
-    var result = database.deleteQuestion(req.body.questionId);
-    result.exec();
-    res.redirect('/profile');
+    //database.deleteQuestion(req.body.questionId);
+    //database.deleteAnswer(req.body.questionId);
+    res.send(req.body.questionId);
+    res.send("DELETED");
+    res.redirect('/profile/deleteQuestionAnswers');
+});
+
+router.post('/profile/deleteQuestionAnswers', function (req, res) {
+    res.send("/profile/deleteQuestionAnswers");
+    //var answersDeleteResult = database.deleteAnswer(req.body.questionId);
+    //answersDeleteResult.exec();
+    //res.redirect('/profile');
+});
+
+router.post('/profile/vote', function (req, res) {
+
+    //var v = database.findQuestionVote(req.body.questionId, req.user._id).exec();
+    
+    //v.exec(function (err, vote) {
+    //    if (vote._id == null) {
+    //        database.addQuestionVote(req.body.questionId, req.user._id, req.body.points).exec();
+    //    }
+    //});
+    p1 = database.findQuestionVote(req.body.questionId, req.user._id).exec();
+    p2 = database.addQuestionVote(req.body.questionId, req.user._id, req.body.points).exec();
+
+
+    Promise.all(p1, p2);
+    res.send("ADDED");
+   
+});
+
+router.post('/profile/answervote', function (req, res) {
+    res.send(req.body.points);
 });
 
 module.exports = router;

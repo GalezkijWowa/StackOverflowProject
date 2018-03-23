@@ -15,7 +15,11 @@ var Question = new Schema({
         type: String,
         required: true
     },
-    date: {
+    dateofcreation: {
+        type: Date,
+        default: Date.now
+    },
+    dateofupdate: {
         type: Date,
         default: Date.now
     },

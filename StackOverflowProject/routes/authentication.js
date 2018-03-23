@@ -8,7 +8,6 @@ router.get('/auth/register', function (req, res) {
 });
 router.post('/auth/register', function (req, res) {
     database.addUser(req.body.username, req.body.password, "user");
-    //database.addQuestion(req.body._id, "Test title", "test description");
     res.redirect("/");
 });
 

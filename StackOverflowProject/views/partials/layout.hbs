@@ -23,12 +23,12 @@
                 <ul class="nav navbar-nav navbar-right">
 
                     {{#if user}}
-                    <li><a href="/questions/all"><span class="glyphicon glyphicon-education"></span> All questions</a></li>
-                    <li><a href="/profile"><span class="glyphicon glyphicon-home"></span> {{user.username}}</a></li>
-                    <li><a href="/auth/logout"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
+                        <li><a href="/questions/all"><span class="glyphicon glyphicon-education"></span> All questions</a></li>
+                        <li><a href="/profile"><span class="glyphicon glyphicon-home"></span> {{user.username}}</a></li>
+                        <li><a href="/auth/logout"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
                     {{else}}
-                    <li><a href="/auth/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li><a href="/auth/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <li><a href="/auth/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                        <li><a href="/auth/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                     {{/if}}
                 </ul>
             </div>

@@ -2,8 +2,8 @@
 Schema = mongoose.Schema;
 
 
-var QuastionVote = new Schema({
+var QuestionVote = new Schema({
     author: { type: Schema.Types.ObjectId, ref: 'User' },
     question: { type: Schema.Types.ObjectId, ref: 'Question' },
 });
-module.exports = mongoose.model('QuetsionVote', QuationVote);
+module.exports = mongoose.model('QuetsionVote', QuestionVote);

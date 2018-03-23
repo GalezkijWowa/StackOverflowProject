@@ -9,7 +9,15 @@ var Answer = new Schema({
         type: String,
         required: true
     },
-    date: {
+    authorname: {
+        type: String,
+        required: true
+    },
+    dateofcreating: {
+        type: Date,
+        default: Date.now
+    },
+    dateofcreating: {
         type: Date,
         default: Date.now
     },

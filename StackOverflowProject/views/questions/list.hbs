@@ -3,10 +3,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../public/stylesheets/list.css" />
+    <link rel="stylesheet" href="../../public/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../public/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="../../public/javascripts/profile.js"></script>
+
 </head>
 <body>
-    
+    {{> layout}}
     <div class="blog">
         <div class="container">
             <div class="row">
@@ -14,25 +22,31 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">ALL QUESTIONS</h3>
                     </div>
-                    <table class="table">
-                    {{#each questions}}
-                    <tr>
-                        <td><h2><a href="/questions/{{this._id}}">{{this.title}}</a></h2></td>
-                        <td>
-                            <form method="post">
-                                <div class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
-                                    </a>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                        <li><a asp-action="Delete" asp-route-id="@manual.ManualId">Delete</a></li>
-                                        <li><a asp-action="Edit" asp-route-id="@manual.ManualId">Edit</a></li>
-                                    </ul>
-                                </div>
-                            </form>
-                        </td>
-                    </tr>
-                    {{/each}}
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                </th>
+                                <th>Title</th>
+                                <th>Date</th>
+                                <th>Rating</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each questions}}
+                            <tr>
+                                <td>{{this.dateofcreation}}</td>
+                                <td><a href="/questions/{{this._id}}">{{this.title}}</a></td>
+                                <td>{{this.dateofupdate}}</td>
+                                <td>{{this.rating}}</td>
+                                <td>
+                                    <a data-target="#editQuestionModal" data-id={{this._id}} class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                    <a data-target="#deleteQuestionModal" data-id={{this._id}} class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
                     </table>
                 </div>
             </div>

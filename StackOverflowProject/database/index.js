@@ -12,14 +12,15 @@ module.exports.getTagQuestions = questionDao.getTagQuestions;
 module.exports.getQuestion = questionDao.getQuestion;
 module.exports.editQuestion = questionDao.editQuestion;
 module.exports.deleteQuestion = questionDao.deleteQuestion;
-module.exports.addVote = questionDao.addVote;
+module.exports.addQuestionVote = questionDao.addQuestionVote;
 module.exports.userQuestions = questionDao.userQuestions;
+module.exports.findQuestionVote = questionDao.findQuestionVote;
 
 module.exports.addAnswer = answerDao.addAnswer;
 module.exports.getAnswers = answerDao.getAnswers;
 module.exports.editAnswer = answerDao.editAnswer;
 module.exports.deleteAnswer = answerDao.deleteAnswer;
-module.exports.addVote = answerDao.addVote;
+module.exports.addAnswerVote = answerDao.addAnswerVote;
 
 module.exports.getTags = tagDao.getTags;
 module.exports.addTag = tagDao.addTag;

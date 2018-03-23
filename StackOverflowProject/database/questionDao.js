@@ -1,5 +1,6 @@
 ﻿var mongoose = require("mongoose");
 var Question = require("../models/question");
+var Vote = require("../models/questionVote")
 var async = require('async');
 var Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
@@ -34,11 +35,28 @@ var userQuestions = function (userId) {
 }
 
 var getTagQuestions = function (tagId) { }
-var editQuestion = function (questionId) { }
-var deleteQuestion = function (questionId) {
-    return Question.findByIdAndRemove(id = questionId);
+var editQuestion = function (questionId, title, description) {
+    Question.update({_id : questionId}, { title: title, description: description }).exec();
 }
-var addVote = function (questionId, vote) { }
+var deleteQuestion = function (questionId) {
+    Question.findByIdAndRemove(id = questionId).exec();
+}
+var addQuestionVote = function (questionId, userId, points) {
+    var vote = new Vote({
+        author: userId,
+        question: questionId
+    });
+    vote.save(function (err, next) {
+        if (err) { next(err) }
+    });
+
+    Question.update({ _id: questionId }, { title: "changed" });
+}
+
+var findQuestionVote = function (questionId, userId) {
+    result = Vote.find({author: userId, question: questionId});
+    return result;
+}
 
 module.exports.addQuestion = addQuestion;
 module.exports.getAllQuestions = getAllQuestions;
@@ -46,5 +64,6 @@ module.exports.getTagQuestions = getTagQuestions;
 module.exports.getQuestion = getQuestion;
 module.exports.editQuestion = editQuestion;
 module.exports.deleteQuestion = deleteQuestion;
-module.exports.addVote = addVote;
+module.exports.addQuestionVote = addQuestionVote;
+module.exports.findQuestionVote = findQuestionVote;
 module.exports.userQuestions = userQuestions;

@@ -5,9 +5,10 @@ var questionDao = require("./questionDao");
 var Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
 
-var addAnswer = function (questionId, authorId, text) {
+var addAnswer = function (questionId, authorname, authorId, text) {
     var answer = new Answer({
         author: authorId,
+        authorname: authorname,
         question: questionId,
         text: text
     });
@@ -23,10 +24,16 @@ var getAnswers = function (questionId) {
 }
 var editAnswer = function (answerId) { }
 var deleteAnswer = function (answerId) { }
-var addVote = function (answerId, vote) { }
+
+var addAnswerVote = function (answerId, vote) { }
+
+var deleteAnswers = function (questionId) {
+    Answer.remove({ question: questionId }).exec();
+}
 
 module.exports.addAnswer = addAnswer;
 module.exports.getAnswers = getAnswers;
 module.exports.editAnswer = editAnswer;
 module.exports.deleteAnswer = deleteAnswer;
-module.exports.addVote = addVote;
+module.exports.deleteAnswers = deleteAnswers;
+module.exports.addAnswerVote = addAnswerVote;
