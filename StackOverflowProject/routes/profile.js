@@ -59,11 +59,9 @@ router.post('/profile/vote', function (req, res) {
     //        database.addQuestionVote(req.body.questionId, req.user._id, req.body.points).exec();
     //    }
     //});
-    p1 = database.findQuestionVote(req.body.questionId, req.user._id).exec();
-    p2 = database.addQuestionVote(req.body.questionId, req.user._id, req.body.points).exec();
+    //database.findQuestionVote(req.body.questionId, req.user._id).exec();
+    database.addQuestionVote(req.body.questionId, req.user._id, req.body.points);
 
-
-    Promise.all(p1, p2);
     res.send("ADDED");
    
 });

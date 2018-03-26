@@ -42,15 +42,21 @@ var deleteQuestion = function (questionId) {
     Question.findByIdAndRemove(id = questionId).exec();
 }
 var addQuestionVote = function (questionId, userId, points) {
-    var vote = new Vote({
-        author: userId,
-        question: questionId
+    Vote.findOne({ question: questionId, author: userId }, function (err, value) {
+        console.log(value);
+        if (value == undefined) {
+            var vote = new Vote({
+                author: userId,
+                question: questionId
+            });
+            vote.save(function (err, next) {
+                if (err) { next(err) }
+            });
+            Question.findById({ _id: questionId }, function (err, value) {
+                Question.update({ _id: questionId }, { rating: value.rating + parseInt(points) }).exec();
+            });
+        } 
     });
-    vote.save(function (err, next) {
-        if (err) { next(err) }
-    });
-
-    Question.update({ _id: questionId }, { title: "changed" });
 }
 
 var findQuestionVote = function (questionId, userId) {
