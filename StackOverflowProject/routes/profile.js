@@ -36,38 +36,19 @@ router.get('/profile/editAnswer', function (req, res) {
 });
 
 router.post('/profile/deleteQuestion', function (req, res) {
-    //database.deleteQuestion(req.body.questionId);
-    //database.deleteAnswer(req.body.questionId);
-    res.send(req.body.questionId);
-    res.send("DELETED");
-    res.redirect('/profile/deleteQuestionAnswers');
-});
-
-router.post('/profile/deleteQuestionAnswers', function (req, res) {
-    res.send("/profile/deleteQuestionAnswers");
-    //var answersDeleteResult = database.deleteAnswer(req.body.questionId);
-    //answersDeleteResult.exec();
-    //res.redirect('/profile');
+    database.deleteQuestion(req.body.questionId);
+    database.deleteAnswers(req.body.questionId);
+    res.redirect("/profile");
 });
 
 router.post('/profile/vote', function (req, res) {
-
-    //var v = database.findQuestionVote(req.body.questionId, req.user._id).exec();
-    
-    //v.exec(function (err, vote) {
-    //    if (vote._id == null) {
-    //        database.addQuestionVote(req.body.questionId, req.user._id, req.body.points).exec();
-    //    }
-    //});
-    //database.findQuestionVote(req.body.questionId, req.user._id).exec();
     database.addQuestionVote(req.body.questionId, req.user._id, req.body.points);
-
-    res.send("ADDED");
-   
+    res.redirect('/questions/' + req.body.questionId);  
 });
 
 router.post('/profile/answervote', function (req, res) {
-    res.send(req.body.points);
+    database.addAnswerVote(req.body.answerId, req.user._id, req.body.points);
+    res.redirect('/questions/' + req.body.questionId);  
 });
 
 module.exports = router;

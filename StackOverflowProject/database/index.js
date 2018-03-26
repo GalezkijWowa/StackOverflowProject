@@ -20,6 +20,7 @@ module.exports.addAnswer = answerDao.addAnswer;
 module.exports.getAnswers = answerDao.getAnswers;
 module.exports.editAnswer = answerDao.editAnswer;
 module.exports.deleteAnswer = answerDao.deleteAnswer;
+module.exports.deleteAnswers = answerDao.deleteAnswers;
 module.exports.addAnswerVote = answerDao.addAnswerVote;
 
 module.exports.getTags = tagDao.getTags;

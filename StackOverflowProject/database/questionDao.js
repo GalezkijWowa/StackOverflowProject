@@ -1,6 +1,6 @@
 ﻿var mongoose = require("mongoose");
 var Question = require("../models/question");
-var Vote = require("../models/questionVote")
+var Vote = require("../models/questionVote");
 var async = require('async');
 var Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
@@ -36,14 +36,13 @@ var userQuestions = function (userId) {
 
 var getTagQuestions = function (tagId) { }
 var editQuestion = function (questionId, title, description) {
-    Question.update({_id : questionId}, { title: title, description: description }).exec();
+    Question.update({ _id: questionId }, { title: title, description: description, dateofupdate: new Date(Date.now())}).exec();
 }
 var deleteQuestion = function (questionId) {
     Question.findByIdAndRemove(id = questionId).exec();
 }
 var addQuestionVote = function (questionId, userId, points) {
     Vote.findOne({ question: questionId, author: userId }, function (err, value) {
-        console.log(value);
         if (value == undefined) {
             var vote = new Vote({
                 author: userId,
@@ -55,7 +54,7 @@ var addQuestionVote = function (questionId, userId, points) {
             Question.findById({ _id: questionId }, function (err, value) {
                 Question.update({ _id: questionId }, { rating: value.rating + parseInt(points) }).exec();
             });
-        } 
+        }
     });
 }
 
