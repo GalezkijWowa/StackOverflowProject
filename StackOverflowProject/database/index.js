@@ -14,7 +14,6 @@ module.exports.editQuestion = questionDao.editQuestion;
 module.exports.deleteQuestion = questionDao.deleteQuestion;
 module.exports.addQuestionVote = questionDao.addQuestionVote;
 module.exports.userQuestions = questionDao.userQuestions;
-module.exports.findQuestionVote = questionDao.findQuestionVote;
 
 module.exports.addAnswer = answerDao.addAnswer;
 module.exports.getAnswers = answerDao.getAnswers;

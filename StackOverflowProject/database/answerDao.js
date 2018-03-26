@@ -24,7 +24,6 @@ var getAnswers = function (questionId) {
     return result;
 }
 var editAnswer = function (answerId) { }
-var deleteAnswer = function (answerId) { }
 
 var addAnswerVote = function (answerId, userId, points) {
     Vote.findOne({ answer: answerId, author: userId }, function (err, value) {
@@ -44,7 +43,17 @@ var addAnswerVote = function (answerId, userId, points) {
 }
 
 var deleteAnswers = function (questionId) {
-    Answer.remove({ question: questionId }).exec();
+    Answer.find({ question: questionId }, function (err, answers) {
+        answers.forEach(function (element) {
+            deleteAnswer(element._id);
+        });
+    }).exec();
+}
+
+var deleteAnswer = function (answerId) {
+    Vote.remove({ answer: answerId }).exec();
+    Answer.findByIdAndRemove(answerId).exec();
+    
 }
 
 module.exports.addAnswer = addAnswer;

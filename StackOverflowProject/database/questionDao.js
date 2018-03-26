@@ -39,7 +39,9 @@ var editQuestion = function (questionId, title, description) {
     Question.update({ _id: questionId }, { title: title, description: description, dateofupdate: new Date(Date.now())}).exec();
 }
 var deleteQuestion = function (questionId) {
-    Question.findByIdAndRemove(id = questionId).exec();
+    Question.findByIdAndRemove(id = questionId, function (err, question) {
+        Vote.remove({ question: questionId }).exec();
+    }).exec();
 }
 var addQuestionVote = function (questionId, userId, points) {
     Vote.findOne({ question: questionId, author: userId }, function (err, value) {
@@ -58,11 +60,6 @@ var addQuestionVote = function (questionId, userId, points) {
     });
 }
 
-var findQuestionVote = function (questionId, userId) {
-    result = Vote.find({author: userId, question: questionId});
-    return result;
-}
-
 module.exports.addQuestion = addQuestion;
 module.exports.getAllQuestions = getAllQuestions;
 module.exports.getTagQuestions = getTagQuestions;
@@ -70,5 +67,4 @@ module.exports.getQuestion = getQuestion;
 module.exports.editQuestion = editQuestion;
 module.exports.deleteQuestion = deleteQuestion;
 module.exports.addQuestionVote = addQuestionVote;
-module.exports.findQuestionVote = findQuestionVote;
 module.exports.userQuestions = userQuestions;
