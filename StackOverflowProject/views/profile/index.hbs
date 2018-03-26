@@ -42,12 +42,12 @@
                 <tbody>
                     {{#each questions}}
                         <tr>
-                            <td>{{this.dateofcreation}}</td>
+                            <td>{{formatDate this.dateofcreation 'MMMM Do YYYY, h:mm:ss a'}}</td>
                             <td><a href="/questions/{{this._id}}">{{this.title}}</a></td>
-                            <td>{{this.dateofupdate}}</td>
+                            <td>{{formatDate this.dateofupdate 'MMMM Do YYYY, h:mm:ss a'}}</td>
                             <td>{{this.rating}}</td>
                             <td>
-                                <a data-target="#editQuestionModal" data-id={{this._id}} data-title={{this.title}} data-description={{this.description}} class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                <a data-target="#editQuestionModal" data-id={{this._id}} data-title={{this.title}} data-text={{this.description}} class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                                 <a data-target="#deleteQuestionModal" data-id={{this._id}} class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                             </td>
                         </tr>
@@ -71,11 +71,11 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Title</label>
-                            <input type="text" name="title" title="title" class="form-control" required>
+                            <input type="text" name="title" id="title" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            <textarea class="form-control" name="description" rows="10" description="description" required></textarea>
+                            <textarea class="form-control" name="description" id="text" rows="10" description="description" required></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -99,7 +99,7 @@
                         <input type="text" name="questionId" id="questionId"/>
                     </div>
                     <div class="modal-body">
-                        <p>Are you sure you want to delete these Records?</p>
+                        <p>Are you sure you want to delete these Record?</p>
                         <p class="text-warning"><small>This action cannot be undone.</small></p>
                     </div>
                     <div class="modal-footer">

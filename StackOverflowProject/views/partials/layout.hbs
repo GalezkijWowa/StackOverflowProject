@@ -21,8 +21,11 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-
+                    
                     {{#if user}}
+                        {{#if (eq user.role "admin")}}
+                            <li><a href="/admin/tags"><span class="glyphicon glyphicon-home"></span> Manage Tags</a></li>
+                        {{/if}}
                         <li><a href="/questions/all"><span class="glyphicon glyphicon-education"></span> All questions</a></li>
                         <li><a href="/profile"><span class="glyphicon glyphicon-home"></span> {{user.username}}</a></li>
                         <li><a href="/auth/logout"><span class="glyphicon glyphicon-off"></span> Logout</a></li>

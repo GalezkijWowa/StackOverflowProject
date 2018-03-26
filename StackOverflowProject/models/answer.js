@@ -17,7 +17,7 @@ var Answer = new Schema({
         type: Date,
         default: Date.now
     },
-    dateofcreating: {
+    dateofupdate: {
         type: Date,
         default: Date.now
     },

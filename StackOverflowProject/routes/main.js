@@ -1,3 +1,5 @@
 ﻿exports.home = function (req, res, next) {
-    res.render('main/home.hbs');
+
+    var date = new Date(Date.now());
+    res.render('main/home.hbs', { body: date });
 };

@@ -23,7 +23,9 @@ var getAnswers = function (questionId) {
     result = Answer.find({ question: questionId });
     return result;
 }
-var editAnswer = function (answerId) { }
+var editAnswer = function (answerId, text) {
+    Answer.update({ _id: answerId }, { text:text, dateofupdate: new Date(Date.now()) }).exec();
+}
 
 var addAnswerVote = function (answerId, userId, points) {
     Vote.findOne({ answer: answerId, author: userId }, function (err, value) {

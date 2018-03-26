@@ -5,9 +5,16 @@
     <meta charset="utf-8" />
     <title>{{question.title}}</title>
 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../public/stylesheets/list.css" />
     <link rel="stylesheet" href="../../public/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/stylesheets/main.css" />
-    <script src="../../public/javascripts/vote.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../public/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="../../public/javascripts/profile.js"></script>
 </head>
 <body>
     {{> layout}}
@@ -18,7 +25,7 @@
                     <h2>
                         {{question.title}}
                     </h2>
-
+                    <h4><b> created: </b> {{formatDate question.dateofupdate 'MMMM Do YYYY, h:mm:ss a'}}</h4>
                     <form name="ratings" method="post" action="/profile/vote">
                         <button type="submit" class="btn btn-default btn-sm" name="points" value=1>
                             <span class="glyphicon glyphicon-thumbs-up"></span>
@@ -31,48 +38,107 @@
                         </div>
                         <b>{{question.rating}}</b>
                     </form>
-
-                        <hr />
-                        <h5>{{question.description}}</h5>
-                        <b id="userName"><span class="glyphicon glyphicon-user"></span>{{user.username}}</b>
-                        <hr />
-                        <form id="addanswer" class="form-horizontal" method="post" action="/profile/addAnswer">
-                            <textarea name="text" id="message" class="form-control" rows="6" value=""></textarea>
-                            <div class="form-group" hidden="hidden">
-                                <input name="questionId" class="form-control" value={{question._id}} />
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" value="Add" class="btn btn-default" style="color:blue; margin-top:10px;" />
-                            </div>
-                        </form>
-                        <hr />
-                        <h3>Comments:</h3>
-                        {{#each answers}}
-                        <b><span class="glyphicon glyphicon-user"></span>{{this.authorname}}</b>
-                        <form name="ratings" method="post" action="/profile/answervote">
-                            <button type="submit" class="btn btn-default btn-sm" name="points" value=1>
-                                <span class="glyphicon glyphicon-thumbs-up"></span>
-                            </button>
-                            <button type="submit" class="btn btn-default btn-sm" name="points" value=-1>
-                                <span class="glyphicon glyphicon-thumbs-down"></span>
-                            </button>
-                            <div class="form-group" hidden="hidden">
-                                <input name="answerId" class="form-control" value={{this._id}} />
-                            </div>
-                            <div class="form-group" hidden="hidden">
-                                <input name="questionId" class="form-control" value={{this.question}} />
-                            </div>
-                            {{this.rating}}
-                        </form>
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <div class="col-md-11">
-                                    <p>{{this.text}}</p>
-                                </div>
+                    <hr />
+                    <h5>{{question.description}}</h5>
+                    <b id="userName"><span class="glyphicon glyphicon-user"></span>{{user.username}} last update: </b> {{formatDate question.dateofcreation 'MMMM Do YYYY, h:mm:ss a'}} 
+                    <hr />
+                    <form id="addanswer" class="form-horizontal" method="post" action="/profile/addAnswer">
+                        <textarea name="text" id="message" class="form-control" rows="6" value=""></textarea>
+                        <div class="form-group" hidden="hidden">
+                            <input name="questionId" class="form-control" value={{question._id}} />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Add" class="btn btn-default" style="color:blue; margin-top:10px;" />
+                        </div>
+                    </form>
+                    <hr />
+                    <h3>Comments:</h3>
+                    {{#each answers}}
+                    <b><span class="glyphicon glyphicon-user"></span>{{this.authorname}} </b> {{formatDate this.dateofupdate 'MMMM Do YYYY, h:mm:ss a'}}
+                    <form name="ratings" method="post" action="/profile/answervote">
+                        <button type="submit" class="btn btn-default btn-sm" name="points" value=1>
+                            <span class="glyphicon glyphicon-thumbs-up"></span>
+                        </button>
+                        <button type="submit" class="btn btn-default btn-sm" name="points" value=-1>
+                            <span class="glyphicon glyphicon-thumbs-down"></span>
+                        </button>
+                        <div class="form-group" hidden="hidden">
+                            <input name="answerId" class="form-control" value={{this._id}} />
+                        </div>
+                        <div class="form-group" hidden="hidden">
+                            <input name="questionId" class="form-control" value={{this.question}} />
+                        </div>
+                        {{this.rating}}
+                    </form>
+                    <a data-target="#editAnswerModal" data-id={{this.question}} data-answer={{this._id}} data-text={{this.text}} class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                    <a data-target="#deleteAnswerModal" data-id={{this.question}} data-answer={{this._id}} class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete" data-param="MyOwnParam">&#xE872;</i></a>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="col-md-11">
+                                <p>{{this.text}}</p>
                             </div>
                         </div>
-                        {{/each}}
+                    </div>
+                    {{/each}}
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Answer Modal HTML -->
+    <div id="editAnswerModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="post" action="/profile/editAnswer">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Answer</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="form-group" hidden="hidden">
+                        <input type="text" name="questionId" id="questionId" value="" />
+                    </div>
+                    <div class="form-group" hidden="hidden">
+                        <input type="text" name="answerId" id="answer" value="" />
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Content</label>
+                            <textarea class="form-control" name="text" rows="10" description="text" id="text" required></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="submit" class="btn btn-info" value="Save">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Answer Modal HTML -->
+    <div id="deleteAnswerModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="post" action="/profile/deleteAnswer">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Delete Answer</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="form-group" hidden="hidden"> 
+                        <input type="text" name="questionId" id="questionId" value="" />
+                    </div>
+                    <div class="form-group" hidden="hidden">
+                        <input type="text" name="answerId" id="answer" value="" />
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete these Answer?</p>
+                        <p class="text-warning"><small>This action cannot be undone.</small></p>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="submit" class="btn btn-danger" value="Delete">
+                    </div>
+                </form>
             </div>
         </div>
     </div>

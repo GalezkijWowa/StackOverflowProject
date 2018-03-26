@@ -12,13 +12,32 @@ var hbs = require('hbs');
 var mongoose = require("mongoose");
 var routes = require('./routes');
 var app = express();
-
+var exphbs = require('express3-handlebars');
+var helpers = require('../StackOverflowProject/helpers/hbHelpers');
 var session = require('express-session');
-
+var Handlebars = require('handlebars');
+var moment = require('moment');
 // view engine setup
 hbs.registerPartials(__dirname + "/views/partials");
 app.set('views', path.join(__dirname, 'views'));
+
+//HBS Helpers
+const {
+    eq,
+    formatDate
+} = require('./helpers/hbs');
+
+app.engine('.hbs', exphbs({
+    helpers: {
+        eq: eq,
+        formatDate: formatDate
+    },
+    precompiled: ['views/partials'],
+    extname: '.hbs', partialsDir: ['views/partials']
+}));
 app.set("view engine", "hbs");
+
+
 app.use("/public", express.static(path.join(__dirname, 'public')));
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -27,6 +46,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 mongoose.connect(config.get('db:connection'));
 

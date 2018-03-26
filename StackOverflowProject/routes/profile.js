@@ -31,8 +31,14 @@ router.post('/profile/editQuestion', function (req, res) {
     res.redirect("/profile");
 });
 
-router.get('/profile/editAnswer', function (req, res) {
-    res.render('profile/createAnswer.hbs');
+router.post('/profile/editAnswer', function (req, res) {
+    database.editAnswer(req.body.answerId, req.body.text);
+    res.redirect('/questions/' + req.body.questionId);  
+});
+
+router.post('/profile/deleteAnswer', function (req, res) {
+    database.deleteAnswer(req.body.answerId);
+    res.redirect('/questions/' + req.body.questionId);  
 });
 
 router.post('/profile/deleteQuestion', function (req, res) {
