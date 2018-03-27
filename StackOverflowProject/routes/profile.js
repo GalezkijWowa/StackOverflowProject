@@ -18,12 +18,17 @@ router.post('/profile/addAnswer', function (req, res) {
 });
 
 router.post('/profile/createQuestion', function (req, res) {
-    database.addQuestion(req.user._id, req.body.title, req.body.description);
+    database.addQuestion(req.user._id, req.body.title, req.body.description, req.body.tags);
+    //console.log(req.body.tags);
+    //res.send(req.user._id + req.body.title + req.body.description);
     res.redirect("/profile");
 });
 
 router.get('/profile/createQuestion', function (req, res) {
-    res.render('profile/createQuestion.hbs');
+    var result = database.getTags();
+    result.exec(function (err, tags) {
+        res.render('profile/createQuestion.hbs', { tags: tags });
+    });
 });
 
 router.post('/profile/editQuestion', function (req, res) {

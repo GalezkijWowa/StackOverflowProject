@@ -22,64 +22,70 @@
         <div class="container">
             <div class="row">
                 <div class="[ col-xs-12 col-sm-offset-0 col-sm-10 ]">
-                    <h2>
-                        {{question.title}}
-                    </h2>
-                    <h4><b> created: </b> {{formatDate question.dateofupdate 'MMMM Do YYYY, h:mm:ss a'}}</h4>
-                    <form name="ratings" method="post" action="/profile/vote">
-                        <button type="submit" class="btn btn-default btn-sm" name="points" value=1>
-                            <span class="glyphicon glyphicon-thumbs-up"></span>
-                        </button>
-                        <button type="submit" class="btn btn-default btn-sm" name="points" value=-1>
-                            <span class="glyphicon glyphicon-thumbs-down"></span>
-                        </button>
-                        <div class="form-group" hidden="hidden">
-                            <input name="questionId" class="form-control" value={{question._id}} />
-                        </div>
-                        <b>{{question.rating}}</b>
-                    </form>
-                    <hr />
-                    <h5>{{question.description}}</h5>
-                    <b id="userName"><span class="glyphicon glyphicon-user"></span>{{user.username}} last update: </b> {{formatDate question.dateofcreation 'MMMM Do YYYY, h:mm:ss a'}} 
-                    <hr />
-                    <form id="addanswer" class="form-horizontal" method="post" action="/profile/addAnswer">
-                        <textarea name="text" id="message" class="form-control" rows="6" value=""></textarea>
-                        <div class="form-group" hidden="hidden">
-                            <input name="questionId" class="form-control" value={{question._id}} />
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" value="Add" class="btn btn-default" style="color:blue; margin-top:10px;" />
-                        </div>
-                    </form>
-                    <hr />
-                    <h3>Comments:</h3>
-                    {{#each answers}}
-                    <b><span class="glyphicon glyphicon-user"></span>{{this.authorname}} </b> {{formatDate this.dateofupdate 'MMMM Do YYYY, h:mm:ss a'}}
-                    <form name="ratings" method="post" action="/profile/answervote">
-                        <button type="submit" class="btn btn-default btn-sm" name="points" value=1>
-                            <span class="glyphicon glyphicon-thumbs-up"></span>
-                        </button>
-                        <button type="submit" class="btn btn-default btn-sm" name="points" value=-1>
-                            <span class="glyphicon glyphicon-thumbs-down"></span>
-                        </button>
-                        <div class="form-group" hidden="hidden">
-                            <input name="answerId" class="form-control" value={{this._id}} />
-                        </div>
-                        <div class="form-group" hidden="hidden">
-                            <input name="questionId" class="form-control" value={{this.question}} />
-                        </div>
-                        {{this.rating}}
-                    </form>
-                    <a data-target="#editAnswerModal" data-id={{this.question}} data-answer={{this._id}} data-text={{this.text}} class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                    <a data-target="#deleteAnswerModal" data-id={{this.question}} data-answer={{this._id}} class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete" data-param="MyOwnParam">&#xE872;</i></a>
-                    <div class="panel panel-default">
+                    <div class="panel panel-primary">
                         <div class="panel-body">
-                            <div class="col-md-11">
-                                <p>{{this.text}}</p>
+                            <h2>
+                                {{question.title}}
+                            </h2>
+                            <h4><b> created: </b> {{formatDate question.dateofupdate 'MMMM Do YYYY, h:mm:ss a'}}</h4>
+                            <form name="ratings" method="post" action="/profile/vote">
+                                <button type="submit" class="btn btn-default btn-sm" name="points" value=1>
+                                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                                </button>
+                                <button type="submit" class="btn btn-default btn-sm" name="points" value=-1>
+                                    <span class="glyphicon glyphicon-thumbs-down"></span>
+                                </button>
+                                <div class="form-group" hidden="hidden">
+                                    <input name="questionId" class="form-control" value={{question._id}} />
+                                </div>
+                                <b>{{question.rating}}</b>
+                            </form>
+                            <hr />
+                            <h5>{{question.description}}</h5>
+                            <b id="userName"><span class="glyphicon glyphicon-user"></span>{{user.username}} last update: </b> {{formatDate question.dateofcreation 'MMMM Do YYYY, h:mm:ss a'}}
+                            <hr />
+                            <form id="addanswer" class="form-horizontal" method="post" action="/profile/addAnswer">
+                                <textarea name="text" id="message" class="form-control" rows="6" value=""></textarea>
+                                <div class="form-group" hidden="hidden">
+                                    <input name="questionId" class="form-control" value={{question._id}} />
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Add" class="btn btn-default" style="color:blue; margin-left:12px; margin-top:10px;" />
+                                </div>
+                            </form>
+                            <hr />
+                            <h3>Comments:</h3>
+                            {{#each answers}}
+                            <b><span class="glyphicon glyphicon-user"></span>{{this.authorname}} </b> {{formatDate this.dateofupdate 'MMMM Do YYYY, h:mm:ss a'}}
+                            <form name="ratings" method="post" action="/profile/answervote">
+                                <button type="submit" class="btn btn-default btn-sm" name="points" value=1>
+                                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                                </button>
+                                <button type="submit" class="btn btn-default btn-sm" name="points" value=-1>
+                                    <span class="glyphicon glyphicon-thumbs-down"></span>
+                                </button>
+                                <div class="form-group" hidden="hidden">
+                                    <input name="answerId" class="form-control" value={{this._id}} />
+                                </div>
+                                <div class="form-group" hidden="hidden">
+                                    <input name="questionId" class="form-control" value={{this.question}} />
+                                </div>
+                                {{this.rating}}
+                            </form>
+                            {{#if (eq this.author ../user._id)}}
+                            <a data-target="#editAnswerModal" data-id={{this.question}} data-answer={{this._id}} data-text={{this.text}} class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                            <a data-target="#deleteAnswerModal" data-id={{this.question}} data-answer={{this._id}} class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete" data-param="MyOwnParam">&#xE872;</i></a>
+                            {{/if}}
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="col-md-11">
+                                        <p>{{this.text}}</p>
+                                    </div>
+                                </div>
                             </div>
+                            {{/each}}
                         </div>
                     </div>
-                    {{/each}}
                 </div>
             </div>
         </div>

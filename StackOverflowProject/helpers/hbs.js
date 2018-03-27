@@ -4,7 +4,8 @@ module.exports = {
     eq: function (v1, v2) {
         if (v1.toString() == v2.toString()) {
             return true;
-        } else {
+        }
+        else {
             return false;
         }  
     },

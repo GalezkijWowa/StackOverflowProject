@@ -6,6 +6,9 @@
 
     <link rel="stylesheet" href="../../public/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/stylesheets/main.css" />
+    <link rel="stylesheet" href="../../public/bootstrap-tagsinput/src/bootstrap-tagsinput.css" />
+    <script src="../../public/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+    <script src="../../public/jquery/dist/jquery.js"></script>
     <title>Create</title>
 </head>
 <body>
@@ -13,7 +16,7 @@
     <div class="blog">
         <div class="container">
             <div class="row">
-                <div class="[ col-xs-12 col-sm-offset-0 col-sm-10 ]">
+                <div class="col-md-10">
                     <div class="panel panel-primary">
                         <div class="panel-body">
                             <h4>Create<span class="glyphicon glyphicon-education"></span></h4>
@@ -30,10 +33,12 @@
                                             <textarea id="message" name="description" class="form-control" rows="10" value=""></textarea>
                                         </div>
                                         <div class="form-group">
-                                            <label asp-for="Category" class="col-md-2 control-label"></label>
                                             <div class="col-md-10">
-                                                <select asp-for="Category" asp-items="Html.GetEnumSelectList<ECategory>()" class="form-control"></select>
-                                                <span asp-validation-for="Category" class="text-danger"></span>
+                                                <select multiple name="tags" class="form-control ">
+                                                    {{#each tags}}
+                                                        <option value={{this.tagname}}>{{this.tagname}}</option>
+                                                    {{/each}}
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -46,7 +51,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>     
     </div>
 </body>
 </html>

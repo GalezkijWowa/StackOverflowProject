@@ -1,5 +1,9 @@
-﻿exports.home = function (req, res, next) {
+﻿var database = require('../database/index');
 
-    var date = new Date(Date.now());
-    res.render('main/home.hbs', { body: date });
+exports.home = function (req, res, next) {
+    var result = database.getTags();
+
+    result.exec(function (err, tags) {
+        res.render('main/home.hbs', { tags: tags });
+    });
 };

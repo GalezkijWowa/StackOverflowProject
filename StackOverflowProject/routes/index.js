@@ -20,6 +20,9 @@ router.get('/profile', check, profile);
 router.get('/profile/*', check, profile);
 router.post('/profile/*', check, profile);
 
+
+router.post('/admin/*', checkAdmin, admin);
 router.get('/admin/*', checkAdmin, admin);
+
 
 module.exports = router;

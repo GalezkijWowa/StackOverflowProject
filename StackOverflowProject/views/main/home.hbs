@@ -15,6 +15,22 @@
             По данным на май 2017 года, сайт занимает 53 место по посещаемости во всём мире по рейтингу Alexa Internet, а количество уникальных посетителей составило в декабре 2010 года 18 миллионов человек[12]. В мае 2010 года создатели сайта объявили о том, что венчурный капитал Stack Overflow составил $6 млн.
         </p><br>
         <hr />
-     </div>
+
+        {{#if user}}
+        <aside>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="panel-heading" style="background-color:deepskyblue">
+                        <h3 class="panel-title">Tags</h3>
+                    </div>
+                    <hr />
+                    {{#each tags}}
+                    <a href="/questions/tag/{{this.tagname}}" class="btn btn-info btn-sm">{{this.tagname}}</a>
+                    {{/each}}
+                </div>
+            </div>
+        </aside>
+        {{/if}}
+    </div>
 </body>
 </html>

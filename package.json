@@ -2,6 +2,8 @@
   "dependencies": {
     "async": "^2.6.0",
     "bluebird": "^3.5.1",
+    "bootstrap": "^4.0.0",
+    "bootstrap-tagsinput": "^0.7.1",
     "bower": "^1.8.2",
     "connect-mongo": "^2.0.1",
     "connect-mongodb-session": "^2.0.1",
@@ -23,6 +25,7 @@
     "nodemon": "^1.17.2",
     "path": "^0.12.7",
     "serve-favicon": "^2.4.5",
-    "session": "^0.1.0"
+    "session": "^0.1.0",
+    "tags-input": "^1.1.1"
   }
 }

@@ -84,6 +84,9 @@
     <Compile Include="models\question.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="models\questionTag.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="models\tag.js">
       <SubType>Code</SubType>
     </Compile>
@@ -96,12 +99,147 @@
     <Compile Include="public\bootstrap-3.3.7-dist\js\bootstrap.js" />
     <Compile Include="public\bootstrap-3.3.7-dist\js\bootstrap.min.js" />
     <Compile Include="public\bootstrap-3.3.7-dist\js\npm.js" />
+    <Compile Include="public\bootstrap-tagsinput\dist\bootstrap-tagsinput-angular.js" />
+    <Compile Include="public\bootstrap-tagsinput\dist\bootstrap-tagsinput-angular.min.js" />
+    <Compile Include="public\bootstrap-tagsinput\dist\bootstrap-tagsinput.js" />
+    <Compile Include="public\bootstrap-tagsinput\dist\bootstrap-tagsinput.min.js" />
+    <Compile Include="public\bootstrap-tagsinput\examples\assets\app.js" />
+    <Compile Include="public\bootstrap-tagsinput\examples\assets\app_bs2.js" />
+    <Compile Include="public\bootstrap-tagsinput\examples\assets\app_bs3.js" />
+    <Compile Include="public\bootstrap-tagsinput\Gruntfile.js" />
+    <Compile Include="public\bootstrap-tagsinput\karma.conf.js" />
+    <Compile Include="public\bootstrap-tagsinput\src\bootstrap-tagsinput-angular.js" />
+    <Compile Include="public\bootstrap-tagsinput\src\bootstrap-tagsinput.js" />
+    <Compile Include="public\bootstrap-tagsinput\test\bootstrap-tagsinput-angular.tests.js" />
+    <Compile Include="public\bootstrap-tagsinput\test\bootstrap-tagsinput\events.tests.js" />
+    <Compile Include="public\bootstrap-tagsinput\test\bootstrap-tagsinput\input_with_object_items.tests.js" />
+    <Compile Include="public\bootstrap-tagsinput\test\bootstrap-tagsinput\input_with_string_items.tests.js" />
+    <Compile Include="public\bootstrap-tagsinput\test\bootstrap-tagsinput\reproduced_bugs.tests.js" />
+    <Compile Include="public\bootstrap-tagsinput\test\bootstrap-tagsinput\select_with_object_items.tests.js" />
+    <Compile Include="public\bootstrap-tagsinput\test\bootstrap-tagsinput\select_with_string_items.tests.js" />
+    <Compile Include="public\bootstrap-tagsinput\test\helpers.js" />
     <Compile Include="public\javascripts\profile.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="public\javascripts\tags.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="public\javascripts\vote.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="public\jquery\dist\core.js" />
+    <Compile Include="public\jquery\dist\jquery.js" />
+    <Compile Include="public\jquery\dist\jquery.min.js" />
+    <Compile Include="public\jquery\dist\jquery.slim.js" />
+    <Compile Include="public\jquery\dist\jquery.slim.min.js" />
+    <Compile Include="public\jquery\external\sizzle\dist\sizzle.js" />
+    <Compile Include="public\jquery\external\sizzle\dist\sizzle.min.js" />
+    <Compile Include="public\jquery\src\ajax.js" />
+    <Compile Include="public\jquery\src\ajax\jsonp.js" />
+    <Compile Include="public\jquery\src\ajax\load.js" />
+    <Compile Include="public\jquery\src\ajax\parseXML.js" />
+    <Compile Include="public\jquery\src\ajax\script.js" />
+    <Compile Include="public\jquery\src\ajax\var\location.js" />
+    <Compile Include="public\jquery\src\ajax\var\nonce.js" />
+    <Compile Include="public\jquery\src\ajax\var\rquery.js" />
+    <Compile Include="public\jquery\src\ajax\xhr.js" />
+    <Compile Include="public\jquery\src\attributes.js" />
+    <Compile Include="public\jquery\src\attributes\attr.js" />
+    <Compile Include="public\jquery\src\attributes\classes.js" />
+    <Compile Include="public\jquery\src\attributes\prop.js" />
+    <Compile Include="public\jquery\src\attributes\support.js" />
+    <Compile Include="public\jquery\src\attributes\val.js" />
+    <Compile Include="public\jquery\src\callbacks.js" />
+    <Compile Include="public\jquery\src\core.js" />
+    <Compile Include="public\jquery\src\core\access.js" />
+    <Compile Include="public\jquery\src\core\camelCase.js" />
+    <Compile Include="public\jquery\src\core\DOMEval.js" />
+    <Compile Include="public\jquery\src\core\init.js" />
+    <Compile Include="public\jquery\src\core\nodeName.js" />
+    <Compile Include="public\jquery\src\core\parseHTML.js" />
+    <Compile Include="public\jquery\src\core\ready-no-deferred.js" />
+    <Compile Include="public\jquery\src\core\ready.js" />
+    <Compile Include="public\jquery\src\core\readyException.js" />
+    <Compile Include="public\jquery\src\core\stripAndCollapse.js" />
+    <Compile Include="public\jquery\src\core\support.js" />
+    <Compile Include="public\jquery\src\core\toType.js" />
+    <Compile Include="public\jquery\src\core\var\rsingleTag.js" />
+    <Compile Include="public\jquery\src\css.js" />
+    <Compile Include="public\jquery\src\css\addGetHookIf.js" />
+    <Compile Include="public\jquery\src\css\adjustCSS.js" />
+    <Compile Include="public\jquery\src\css\curCSS.js" />
+    <Compile Include="public\jquery\src\css\hiddenVisibleSelectors.js" />
+    <Compile Include="public\jquery\src\css\showHide.js" />
+    <Compile Include="public\jquery\src\css\support.js" />
+    <Compile Include="public\jquery\src\css\var\cssExpand.js" />
+    <Compile Include="public\jquery\src\css\var\getStyles.js" />
+    <Compile Include="public\jquery\src\css\var\isHiddenWithinTree.js" />
+    <Compile Include="public\jquery\src\css\var\rboxStyle.js" />
+    <Compile Include="public\jquery\src\css\var\rnumnonpx.js" />
+    <Compile Include="public\jquery\src\css\var\swap.js" />
+    <Compile Include="public\jquery\src\data.js" />
+    <Compile Include="public\jquery\src\data\Data.js" />
+    <Compile Include="public\jquery\src\data\var\acceptData.js" />
+    <Compile Include="public\jquery\src\data\var\dataPriv.js" />
+    <Compile Include="public\jquery\src\data\var\dataUser.js" />
+    <Compile Include="public\jquery\src\deferred.js" />
+    <Compile Include="public\jquery\src\deferred\exceptionHook.js" />
+    <Compile Include="public\jquery\src\deprecated.js" />
+    <Compile Include="public\jquery\src\dimensions.js" />
+    <Compile Include="public\jquery\src\effects.js" />
+    <Compile Include="public\jquery\src\effects\animatedSelector.js" />
+    <Compile Include="public\jquery\src\effects\Tween.js" />
+    <Compile Include="public\jquery\src\event.js" />
+    <Compile Include="public\jquery\src\event\ajax.js" />
+    <Compile Include="public\jquery\src\event\alias.js" />
+    <Compile Include="public\jquery\src\event\focusin.js" />
+    <Compile Include="public\jquery\src\event\support.js" />
+    <Compile Include="public\jquery\src\event\trigger.js" />
+    <Compile Include="public\jquery\src\exports\amd.js" />
+    <Compile Include="public\jquery\src\exports\global.js" />
+    <Compile Include="public\jquery\src\jquery.js" />
+    <Compile Include="public\jquery\src\manipulation.js" />
+    <Compile Include="public\jquery\src\manipulation\buildFragment.js" />
+    <Compile Include="public\jquery\src\manipulation\getAll.js" />
+    <Compile Include="public\jquery\src\manipulation\setGlobalEval.js" />
+    <Compile Include="public\jquery\src\manipulation\support.js" />
+    <Compile Include="public\jquery\src\manipulation\var\rcheckableType.js" />
+    <Compile Include="public\jquery\src\manipulation\var\rscriptType.js" />
+    <Compile Include="public\jquery\src\manipulation\var\rtagName.js" />
+    <Compile Include="public\jquery\src\manipulation\wrapMap.js" />
+    <Compile Include="public\jquery\src\manipulation\_evalUrl.js" />
+    <Compile Include="public\jquery\src\offset.js" />
+    <Compile Include="public\jquery\src\queue.js" />
+    <Compile Include="public\jquery\src\queue\delay.js" />
+    <Compile Include="public\jquery\src\selector-native.js" />
+    <Compile Include="public\jquery\src\selector-sizzle.js" />
+    <Compile Include="public\jquery\src\selector.js" />
+    <Compile Include="public\jquery\src\serialize.js" />
+    <Compile Include="public\jquery\src\traversing.js" />
+    <Compile Include="public\jquery\src\traversing\findFilter.js" />
+    <Compile Include="public\jquery\src\traversing\var\dir.js" />
+    <Compile Include="public\jquery\src\traversing\var\rneedsContext.js" />
+    <Compile Include="public\jquery\src\traversing\var\siblings.js" />
+    <Compile Include="public\jquery\src\var\arr.js" />
+    <Compile Include="public\jquery\src\var\class2type.js" />
+    <Compile Include="public\jquery\src\var\concat.js" />
+    <Compile Include="public\jquery\src\var\document.js" />
+    <Compile Include="public\jquery\src\var\documentElement.js" />
+    <Compile Include="public\jquery\src\var\fnToString.js" />
+    <Compile Include="public\jquery\src\var\getProto.js" />
+    <Compile Include="public\jquery\src\var\hasOwn.js" />
+    <Compile Include="public\jquery\src\var\indexOf.js" />
+    <Compile Include="public\jquery\src\var\isFunction.js" />
+    <Compile Include="public\jquery\src\var\isWindow.js" />
+    <Compile Include="public\jquery\src\var\ObjectFunctionString.js" />
+    <Compile Include="public\jquery\src\var\pnum.js" />
+    <Compile Include="public\jquery\src\var\push.js" />
+    <Compile Include="public\jquery\src\var\rcssNum.js" />
+    <Compile Include="public\jquery\src\var\rnothtmlwhite.js" />
+    <Compile Include="public\jquery\src\var\slice.js" />
+    <Compile Include="public\jquery\src\var\support.js" />
+    <Compile Include="public\jquery\src\var\toString.js" />
+    <Compile Include="public\jquery\src\wrap.js" />
     <Compile Include="routes\admin.js">
       <SubType>Code</SubType>
     </Compile>
@@ -151,11 +289,45 @@
     <Content Include="public\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="public\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="public\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="public\bootstrap-tagsinput\.npmignore" />
+    <Content Include="public\bootstrap-tagsinput\.travis.yml" />
+    <Content Include="public\bootstrap-tagsinput\bootstrap-tagsinput.jquery.json" />
+    <Content Include="public\bootstrap-tagsinput\bower.json" />
+    <Content Include="public\bootstrap-tagsinput\dist\bootstrap-tagsinput-angular.min.js.map" />
+    <Content Include="public\bootstrap-tagsinput\dist\bootstrap-tagsinput-typeahead.css" />
+    <Content Include="public\bootstrap-tagsinput\dist\bootstrap-tagsinput.css" />
+    <Content Include="public\bootstrap-tagsinput\dist\bootstrap-tagsinput.less" />
+    <Content Include="public\bootstrap-tagsinput\dist\bootstrap-tagsinput.min.js.map" />
+    <Content Include="public\bootstrap-tagsinput\dist\bootstrap-tagsinput.zip" />
+    <Content Include="public\bootstrap-tagsinput\examples\assets\app.css" />
+    <Content Include="public\bootstrap-tagsinput\examples\assets\cities.json" />
+    <Content Include="public\bootstrap-tagsinput\examples\assets\citynames.json" />
+    <Content Include="public\bootstrap-tagsinput\examples\bootstrap-2.3.2.html" />
+    <Content Include="public\bootstrap-tagsinput\examples\index.html" />
+    <Content Include="public\bootstrap-tagsinput\LICENSE" />
+    <Content Include="public\bootstrap-tagsinput\package.json" />
+    <Content Include="public\bootstrap-tagsinput\README.md" />
+    <Content Include="public\bootstrap-tagsinput\src\bootstrap-tagsinput-typeahead.css" />
+    <Content Include="public\bootstrap-tagsinput\src\bootstrap-tagsinput.css" />
+    <Content Include="public\bootstrap-tagsinput\test\index.html" />
+    <Content Include="public\jquery\AUTHORS.txt" />
+    <Content Include="public\jquery\bower.json" />
+    <Content Include="public\jquery\dist\jquery.min.map" />
+    <Content Include="public\jquery\dist\jquery.slim.min.map" />
+    <Content Include="public\jquery\external\sizzle\dist\sizzle.min.map" />
+    <Content Include="public\jquery\external\sizzle\LICENSE.txt" />
+    <Content Include="public\jquery\LICENSE.txt" />
+    <Content Include="public\jquery\package.json" />
+    <Content Include="public\jquery\README.md" />
+    <Content Include="public\jquery\src\.eslintrc.json" />
     <Content Include="public\stylesheets\list.css">
       <SubType>Code</SubType>
     </Content>
     <Content Include="public\stylesheets\main.css" />
     <Content Include="README.md" />
+    <Content Include="views\admin\tagList.hbs">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="views\authentication\login.hbs">
       <SubType>Code</SubType>
     </Content>
@@ -191,6 +363,38 @@
     <Folder Include="public\bootstrap-3.3.7-dist\css\" />
     <Folder Include="public\bootstrap-3.3.7-dist\fonts\" />
     <Folder Include="public\bootstrap-3.3.7-dist\js\" />
+    <Folder Include="public\bootstrap-tagsinput\" />
+    <Folder Include="public\bootstrap-tagsinput\dist\" />
+    <Folder Include="public\bootstrap-tagsinput\examples\" />
+    <Folder Include="public\bootstrap-tagsinput\examples\assets\" />
+    <Folder Include="public\bootstrap-tagsinput\src\" />
+    <Folder Include="public\bootstrap-tagsinput\test\" />
+    <Folder Include="public\bootstrap-tagsinput\test\bootstrap-tagsinput\" />
+    <Folder Include="public\jquery\" />
+    <Folder Include="public\jquery\dist\" />
+    <Folder Include="public\jquery\external\" />
+    <Folder Include="public\jquery\external\sizzle\" />
+    <Folder Include="public\jquery\external\sizzle\dist\" />
+    <Folder Include="public\jquery\src\" />
+    <Folder Include="public\jquery\src\ajax\" />
+    <Folder Include="public\jquery\src\ajax\var\" />
+    <Folder Include="public\jquery\src\attributes\" />
+    <Folder Include="public\jquery\src\core\" />
+    <Folder Include="public\jquery\src\core\var\" />
+    <Folder Include="public\jquery\src\css\" />
+    <Folder Include="public\jquery\src\css\var\" />
+    <Folder Include="public\jquery\src\data\" />
+    <Folder Include="public\jquery\src\data\var\" />
+    <Folder Include="public\jquery\src\deferred\" />
+    <Folder Include="public\jquery\src\effects\" />
+    <Folder Include="public\jquery\src\event\" />
+    <Folder Include="public\jquery\src\exports\" />
+    <Folder Include="public\jquery\src\manipulation\" />
+    <Folder Include="public\jquery\src\manipulation\var\" />
+    <Folder Include="public\jquery\src\queue\" />
+    <Folder Include="public\jquery\src\traversing\" />
+    <Folder Include="public\jquery\src\traversing\var\" />
+    <Folder Include="public\jquery\src\var\" />
     <Folder Include="utils\" />
     <Folder Include="public\" />
     <Folder Include="public\images\" />
@@ -200,6 +404,7 @@
     <Folder Include="views\" />
     <Folder Include="views\authentication\" />
     <Folder Include="views\main\" />
+    <Folder Include="views\admin\" />
     <Folder Include="views\questions\" />
     <Folder Include="views\profile\" />
     <Folder Include="views\partials\" />

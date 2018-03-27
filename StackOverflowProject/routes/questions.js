@@ -8,7 +8,7 @@ var Answer = require("../models/answer");
 router.get('/questions/all', function (req, res) {
     result = database.getAllQuestions(req.user._id);
     result.exec(function (err, questions) {
-        res.render('questions/list.hbs', { questions: questions});
+        res.render('questions/list.hbs', { questions: questions });
     });
 });
 
@@ -23,6 +23,14 @@ router.get('/questions/:id', function (req, res) {
         });
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     });
+});
+
+router.get('/questions/tag/:id', function (req, res) {
+
+    database.getQuestionsByTag(req.params.id, function (questions) {
+        res.render('questions/list.hbs', {questions: questions});
+    });
+    
 });
 
 module.exports = router;

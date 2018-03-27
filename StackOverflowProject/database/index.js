@@ -6,6 +6,8 @@ var tagDao = require('./tagDao');
 
 module.exports.addUser = userDao.addUser;
 
+
+module.exports.getQuestionsByTag = questionDao.getQuestionsByTag 
 module.exports.addQuestion = questionDao.addQuestion;
 module.exports.getAllQuestions = questionDao.getAllQuestions;
 module.exports.getTagQuestions = questionDao.getTagQuestions;
@@ -22,7 +24,8 @@ module.exports.deleteAnswer = answerDao.deleteAnswer;
 module.exports.deleteAnswers = answerDao.deleteAnswers;
 module.exports.addAnswerVote = answerDao.addAnswerVote;
 
+
 module.exports.getTags = tagDao.getTags;
-module.exports.addTag = tagDao.addTag;
-module.exports.edtiTag = tagDao.editTag;
+module.exports.createTag = tagDao.createTag;
+module.exports.editTag = tagDao.editTag;
 module.exports.deleteTag = tagDao.deleteTag;

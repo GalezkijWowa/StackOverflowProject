@@ -23,8 +23,6 @@ var Question = new Schema({
         type: Date,
         default: Date.now
     },
-    answers: [{ type: Schema.Types.ObjectId, ref: 'Answer' }],
-    tags: [{ type: Schema.Types.ObjectId, ref: 'Tag' }],
     rating: {
         type: Number,
         default: 0

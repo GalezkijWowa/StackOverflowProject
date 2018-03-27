@@ -1,6 +1,7 @@
 ﻿var mongoose = require("mongoose");
 var Question = require("../models/question");
 var Vote = require("../models/questionVote");
+var QuestionTag = require('../models/questionTag');
 var async = require('async');
 var Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
@@ -11,16 +12,18 @@ var getQuestion = function (questionId) {
     return result;
 }
 
-var addQuestion = function (author, title, description, answers=null, tags=null) {
+var addQuestion = function (author, title, description, tags) {
     var question = new Question({
         author: author,
         title: title,
         description: description,
-        answers: answers,
         tags: tags
     });
     question.save(function (err, next) {
         if (err) { next(err) }
+    });
+    tags.forEach(function (element) {
+        addQuestionTag(question._id, element);
     });
 }
 
@@ -60,6 +63,32 @@ var addQuestionVote = function (questionId, userId, points) {
     });
 }
 
+var addQuestionTag = function (questionId, tagname) {
+    var questionTag = new QuestionTag({
+        question: questionId,
+        tagname: tagname
+    });
+    questionTag.save(function (err, next) {
+        if (err) { next(err) }
+    });
+}
+
+var getQuestionsByTag = function (tagName, fn) {
+    var result = [];
+    QuestionTag.find({ tagname: tagName }, function (err, tags) {
+        tags.forEach(function (element) {
+            Question.findById(id = element.question, function (err, question) {
+                result.push(question);
+                if (tags[tags.length - 1].question.toString() == question._id.toString()) {
+                    fn(result);
+                    return result;
+                }
+            });
+        }); 
+    });
+}
+
+module.exports.getQuestionsByTag = getQuestionsByTag;
 module.exports.addQuestion = addQuestion;
 module.exports.getAllQuestions = getAllQuestions;
 module.exports.getTagQuestions = getTagQuestions;
