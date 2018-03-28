@@ -1,5 +1,5 @@
 ﻿var mongoose = require("mongoose");
-var Tag = require('../models/tag')
+var Tag = require('../models/tag');
 var Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
 
@@ -16,6 +16,18 @@ var createTag = function (text) {
     });
 }
 
+var checkTag = function (tagname, fn) {
+    Tag.find({ tagname: tagname }, function (err, result) {
+        if (result.length == 0) {
+            fn(true);
+            return true;
+        } else {
+            fn(false);
+            return false;
+        }
+    });
+}
+
 var editTag = function (tagId, tagName) {
     return Tag.update({ _id: tagId }, { tagname: tagName }).exec();
 }
@@ -23,6 +35,7 @@ var deleteTag = function (tagId) {
     Tag.findByIdAndRemove(id = tagId).exec();
 }
 
+module.exports.checkTag = checkTag;
 module.exports.getTags = getTags;
 module.exports.createTag = createTag;
 module.exports.editTag = editTag;

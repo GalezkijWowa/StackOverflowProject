@@ -11,14 +11,25 @@ router.get('/admin/tags', function (req, res) {
 });
 
 router.post('/admin/createTag', function (req, res) {
-    database.createTag(req.body.tagName);
-    res.redirect('/admin/tags');
+    database.checkTag(req.body.tagName, function (result) {
+        console.log(result);
+        if (result) {
+            database.createTag(req.body.tagName);
+        }
+        res.redirect('/admin/tags');
+    });
 });
 
 
-router.post('/admin/editTag', function (req, res) {
-    database.editTag(req.body.tagId, req.body.tagName);
-    res.redirect('/admin/tags');
+router.post('/admin/editTag', function (req, res) {   
+    database.checkTag(req.body.tagName, function (result) {
+        console.log(result);
+        if (result) {
+            database.editTag(req.body.tagId, req.body.tagName);
+        }
+        res.redirect('/admin/tags');
+    });
+
 });
 
 router.post('/admin/deleteTag', function (req, res) {

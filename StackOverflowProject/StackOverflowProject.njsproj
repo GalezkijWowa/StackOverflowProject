@@ -48,12 +48,6 @@
     <Compile Include="database\userDao.js">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="helpers\eqHelper.js">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="helpers\hbHelpers.js">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="helpers\hbs.js">
       <SubType>Code</SubType>
     </Compile>
@@ -99,25 +93,6 @@
     <Compile Include="public\bootstrap-3.3.7-dist\js\bootstrap.js" />
     <Compile Include="public\bootstrap-3.3.7-dist\js\bootstrap.min.js" />
     <Compile Include="public\bootstrap-3.3.7-dist\js\npm.js" />
-    <Compile Include="public\bootstrap-tagsinput\dist\bootstrap-tagsinput-angular.js" />
-    <Compile Include="public\bootstrap-tagsinput\dist\bootstrap-tagsinput-angular.min.js" />
-    <Compile Include="public\bootstrap-tagsinput\dist\bootstrap-tagsinput.js" />
-    <Compile Include="public\bootstrap-tagsinput\dist\bootstrap-tagsinput.min.js" />
-    <Compile Include="public\bootstrap-tagsinput\examples\assets\app.js" />
-    <Compile Include="public\bootstrap-tagsinput\examples\assets\app_bs2.js" />
-    <Compile Include="public\bootstrap-tagsinput\examples\assets\app_bs3.js" />
-    <Compile Include="public\bootstrap-tagsinput\Gruntfile.js" />
-    <Compile Include="public\bootstrap-tagsinput\karma.conf.js" />
-    <Compile Include="public\bootstrap-tagsinput\src\bootstrap-tagsinput-angular.js" />
-    <Compile Include="public\bootstrap-tagsinput\src\bootstrap-tagsinput.js" />
-    <Compile Include="public\bootstrap-tagsinput\test\bootstrap-tagsinput-angular.tests.js" />
-    <Compile Include="public\bootstrap-tagsinput\test\bootstrap-tagsinput\events.tests.js" />
-    <Compile Include="public\bootstrap-tagsinput\test\bootstrap-tagsinput\input_with_object_items.tests.js" />
-    <Compile Include="public\bootstrap-tagsinput\test\bootstrap-tagsinput\input_with_string_items.tests.js" />
-    <Compile Include="public\bootstrap-tagsinput\test\bootstrap-tagsinput\reproduced_bugs.tests.js" />
-    <Compile Include="public\bootstrap-tagsinput\test\bootstrap-tagsinput\select_with_object_items.tests.js" />
-    <Compile Include="public\bootstrap-tagsinput\test\bootstrap-tagsinput\select_with_string_items.tests.js" />
-    <Compile Include="public\bootstrap-tagsinput\test\helpers.js" />
     <Compile Include="public\javascripts\profile.js">
       <SubType>Code</SubType>
     </Compile>
@@ -289,27 +264,6 @@
     <Content Include="public\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="public\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="public\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="public\bootstrap-tagsinput\.npmignore" />
-    <Content Include="public\bootstrap-tagsinput\.travis.yml" />
-    <Content Include="public\bootstrap-tagsinput\bootstrap-tagsinput.jquery.json" />
-    <Content Include="public\bootstrap-tagsinput\bower.json" />
-    <Content Include="public\bootstrap-tagsinput\dist\bootstrap-tagsinput-angular.min.js.map" />
-    <Content Include="public\bootstrap-tagsinput\dist\bootstrap-tagsinput-typeahead.css" />
-    <Content Include="public\bootstrap-tagsinput\dist\bootstrap-tagsinput.css" />
-    <Content Include="public\bootstrap-tagsinput\dist\bootstrap-tagsinput.less" />
-    <Content Include="public\bootstrap-tagsinput\dist\bootstrap-tagsinput.min.js.map" />
-    <Content Include="public\bootstrap-tagsinput\dist\bootstrap-tagsinput.zip" />
-    <Content Include="public\bootstrap-tagsinput\examples\assets\app.css" />
-    <Content Include="public\bootstrap-tagsinput\examples\assets\cities.json" />
-    <Content Include="public\bootstrap-tagsinput\examples\assets\citynames.json" />
-    <Content Include="public\bootstrap-tagsinput\examples\bootstrap-2.3.2.html" />
-    <Content Include="public\bootstrap-tagsinput\examples\index.html" />
-    <Content Include="public\bootstrap-tagsinput\LICENSE" />
-    <Content Include="public\bootstrap-tagsinput\package.json" />
-    <Content Include="public\bootstrap-tagsinput\README.md" />
-    <Content Include="public\bootstrap-tagsinput\src\bootstrap-tagsinput-typeahead.css" />
-    <Content Include="public\bootstrap-tagsinput\src\bootstrap-tagsinput.css" />
-    <Content Include="public\bootstrap-tagsinput\test\index.html" />
     <Content Include="public\jquery\AUTHORS.txt" />
     <Content Include="public\jquery\bower.json" />
     <Content Include="public\jquery\dist\jquery.min.map" />
@@ -363,13 +317,6 @@
     <Folder Include="public\bootstrap-3.3.7-dist\css\" />
     <Folder Include="public\bootstrap-3.3.7-dist\fonts\" />
     <Folder Include="public\bootstrap-3.3.7-dist\js\" />
-    <Folder Include="public\bootstrap-tagsinput\" />
-    <Folder Include="public\bootstrap-tagsinput\dist\" />
-    <Folder Include="public\bootstrap-tagsinput\examples\" />
-    <Folder Include="public\bootstrap-tagsinput\examples\assets\" />
-    <Folder Include="public\bootstrap-tagsinput\src\" />
-    <Folder Include="public\bootstrap-tagsinput\test\" />
-    <Folder Include="public\bootstrap-tagsinput\test\bootstrap-tagsinput\" />
     <Folder Include="public\jquery\" />
     <Folder Include="public\jquery\dist\" />
     <Folder Include="public\jquery\external\" />

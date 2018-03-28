@@ -1,12 +1,12 @@
 ﻿var User = require('../models/user');
+var database = require('../database/index');
 
 module.exports = function (req, res, next) {
     req.user = res.locals.user = null;
     if (!req.session.user) return next();
 
-    User.findById(req.session.user, function (err, user) {
-        if (err) return next(err);
+    database.getUserById(req.session.user, function (user) {
         req.user = res.locals.user = user;
         next();
-    });
+    });  
 }

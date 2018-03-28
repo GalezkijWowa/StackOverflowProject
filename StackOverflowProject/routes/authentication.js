@@ -19,14 +19,13 @@ router.post('/auth/login', function (req, res) {
     var username = req.body.username;
     var password = req.body.password;
 
-    User.findOne({ username: username }, function (err, user) {
-        if (err) return next(err);
+    database.getUserByName(username, function (user) {
         if (user) {
             if (user.checkPassword(password)) {
                 req.session.user = user._id;
                 res.redirect("/");
             } else {
-                res.send('ERROR');
+                res.send('ERROR! Incorrect password');
             }
         } else {
             res.send('User Not found');

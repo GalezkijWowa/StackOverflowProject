@@ -1,7 +1,7 @@
 ﻿var mongoose = require("mongoose");
 var Answer = require("../models/answer");
 var Question = require("../models/question");
-var Vote = require("../models/answerVote")
+var Vote = require("../models/answerVote");
 var questionDao = require("./questionDao");
 var Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
@@ -19,9 +19,12 @@ var addAnswer = function (questionId, authorname, authorId, text) {
     });
 
 }
-var getAnswers = function (questionId) {
-    result = Answer.find({ question: questionId });
-    return result;
+var getAnswers = function (questionId, fn) {
+    Answer.find({ question: questionId }, function (err, result) {
+        fn(result);
+        return result;
+    });
+    
 }
 var editAnswer = function (answerId, text) {
     Answer.update({ _id: answerId }, { text:text, dateofupdate: new Date(Date.now()) }).exec();

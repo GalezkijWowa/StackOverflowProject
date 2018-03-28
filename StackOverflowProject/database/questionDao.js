@@ -7,9 +7,11 @@ var Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
 
 
-var getQuestion = function (questionId) {
-    result = Question.findById(id = questionId);
-    return result;
+var getQuestion = function (questionId, fn) {
+    Question.findById(id = questionId, function (err, result) {
+        fn(result);
+        return result;
+    });
 }
 
 var addQuestion = function (author, title, description, tags) {
@@ -77,14 +79,17 @@ var getQuestionsByTag = function (tagName, fn) {
     var result = [];
     QuestionTag.find({ tagname: tagName }, function (err, tags) {
         tags.forEach(function (element) {
-            Question.findById(id = element.question, function (err, question) {
-                result.push(question);
-                if (tags[tags.length - 1].question.toString() == question._id.toString()) {
-                    fn(result);
-                    return result;
-                }
+            Question.find({ }, function (err, question) {
+                console.log(question);
+            //    result.push(question);
+            //    if (tags[tags.length - 1].question.toString() == question._id.toString()) {
+            //        //fn(result);
+            //        //return result;
+            //    }
             });
         }); 
+        fn(tags);
+        return tags;
     });
 }
 

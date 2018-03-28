@@ -73,8 +73,12 @@
                                 {{this.rating}}
                             </form>
                             {{#if (eq this.author ../user._id)}}
-                            <a data-target="#editAnswerModal" data-id={{this.question}} data-answer={{this._id}} data-text={{this.text}} class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                            <a data-target="#deleteAnswerModal" data-id={{this.question}} data-answer={{this._id}} class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete" data-param="MyOwnParam">&#xE872;</i></a>
+                                <a data-target="#editAnswerModal" data-id={{this.question}} data-answer={{this._id}} data-text={{this.text}} class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                <a data-target="#deleteAnswerModal" data-id={{this.question}} data-answer={{this._id}} class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete" data-param="MyOwnParam">&#xE872;</i></a>
+                            {{/if}}
+                            {{#if (eq "admin" ../user.role)}}
+                                <a data-target="#editAnswerModal" data-id={{this.question}} data-answer={{this._id}} data-text={{this.text}} class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                <a data-target="#deleteAnswerModal" data-id={{this.question}} data-answer={{this._id}} class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete" data-param="MyOwnParam">&#xE872;</i></a>
                             {{/if}}
                             <div class="panel panel-default">
                                 <div class="panel-body">

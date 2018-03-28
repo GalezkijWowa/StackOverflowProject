@@ -13,4 +13,22 @@ var addUser = function (username, password, role) {
     });
 }
 
+var getUserByName = function (username, fn) {
+    User.findOne({ username: username }, function (err, user) {
+        if (err) return next(err);
+        fn(user);
+        return user;
+    });
+}
+
+var getUserById = function (userid, fn) {
+    User.findOne({ _id: userid }, function (err, user) {
+        if (err) return next(err);
+        fn(user);
+        return user;
+    });
+}
+
+module.exports.getUserById = getUserById;
+module.exports.getUserByName = getUserByName;
 module.exports.addUser = addUser;

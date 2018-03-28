@@ -11,6 +11,7 @@ $(document).on("click", ".edit", function () {
     var myAnswerId = $(this).data('answer');
     var myTitle = $(this).data('title');
     var myText = $(this).data('text');
+
     $(".form-group #questionId").val(myQuestionId);
     $(".form-group #answer").val(myAnswerId);
     $(".form-group #title").val(myTitle);

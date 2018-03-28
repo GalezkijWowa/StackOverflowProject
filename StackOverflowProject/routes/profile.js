@@ -19,8 +19,6 @@ router.post('/profile/addAnswer', function (req, res) {
 
 router.post('/profile/createQuestion', function (req, res) {
     database.addQuestion(req.user._id, req.body.title, req.body.description, req.body.tags);
-    //console.log(req.body.tags);
-    //res.send(req.user._id + req.body.title + req.body.description);
     res.redirect("/profile");
 });
 

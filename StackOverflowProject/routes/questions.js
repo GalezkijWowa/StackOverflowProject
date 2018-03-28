@@ -13,24 +13,18 @@ router.get('/questions/all', function (req, res) {
 });
 
 router.get('/questions/:id', function (req, res) {
-    result = database.getQuestion(req.params.id);
-
-    result.exec(function (err, question) { 
-
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        Answer.find({ question: req.params.id }, function (err, db_answers) {
-            res.render('questions/question.hbs', { question: question, answers: db_answers });                 //NEED UPDATE
-        });
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    database.getQuestion(req.params.id, function (question) {
+        database.getAnswers(req.params.id, function (answers) {
+            res.render('questions/question.hbs', { question: question, answers: answers });
+        })
     });
 });
 
 router.get('/questions/tag/:id', function (req, res) {
-
     database.getQuestionsByTag(req.params.id, function (questions) {
-        res.render('questions/list.hbs', {questions: questions});
+        res.send("IN METHOD");
+        //res.render('questions/list.hbs', {questions: questions});
     });
-    
 });
 
 module.exports = router;
