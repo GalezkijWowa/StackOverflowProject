@@ -19,37 +19,45 @@
         <div class="container">
             <div class="row">
                 <div class="[ col-xs-12 col-sm-offset-0 col-sm-10 ]">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">ALL QUESTIONS</h3>
+                    <div class="container">
+                        <div class="table-wrapper">
+                            <div class="table-title">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <h2><b>Questions</b></h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                        </th>
+                                        <th>Title</th>
+                                        <th>Date</th>
+                                        <th>Rating</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each questions}}
+                                    <tr>
+                                        <td>{{formatDate this.dateofcreation 'MMMM Do YYYY, h:mm:ss a'}}</td>
+                                        <td><a href="/questions/{{this._id}}">{{this.title}}</a></td>
+                                        <td>{{formatDate this.dateofupdate 'MMMM Do YYYY, h:mm:ss a'}}</td>
+                                        <td>{{this.rating}}</td>
+                                        <td>
+                                            {{#if (eq2 ../user.role "admin" this.author ../user._id)}}
+                                            <a data-target="#editQuestionModal" data-id={{this._id}} data-title="{{this.title}}" data-text="{{this.description}}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                            <a data-target="#deleteQuestionModal" data-id={{this._id}} class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                            {{/if}}
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <table class="table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th>
-                                </th>
-                                <th>Title</th>
-                                <th>Date</th>
-                                <th>Rating</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {{#each questions}}
-                            <tr>
-                                <td>{{formatDate this.dateofcreation 'MMMM Do YYYY, h:mm:ss a'}}</td>
-                                <td><a href="/questions/{{this._id}}">{{this.title}}</a></td>
-                                <td>{{formatDate this.dateofupdate 'MMMM Do YYYY, h:mm:ss a'}}</td>
-                                <td>{{this.rating}}</td>
-                                <td>
-                                    {{#if (eq2 ../user.role "admin" this.author ../user._id)}}
-                                        <a data-target="#editQuestionModal" data-id={{this._id}} data-title="{{this.title}}" data-text="{{this.description}}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                        <a data-target="#deleteQuestionModal" data-id={{this._id}} class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                                    {{/if}}
-                                </td>
-                            </tr>
-                            {{/each}}
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>

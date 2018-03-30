@@ -45,7 +45,6 @@ var userQuestions = function (userId) {
     return result;
 }
 
-var getTagQuestions = function (tagId) { }
 var editQuestion = function (questionId, title, description) {
     Question.update({ _id: questionId }, { title: title, description: description, dateofupdate: new Date(Date.now())}).exec();
 }
@@ -71,16 +70,6 @@ var addQuestionVote = function (questionId, userId, points) {
     });
 }
 
-var addQuestionTag = function (questionId, tagname) {
-    var questionTag = new QuestionTag({
-        question: questionId,
-        tagname: tagname
-    });
-    questionTag.save(function (err, next) {
-        if (err) { next(err) }
-    });
-}
-
 var getQuestionsByTag = function (tagName, fn) {
     var result = [];
     QuestionTag.find({ tagname: tagName }, function (err, tags) {
@@ -102,15 +91,9 @@ var getQuestionsByTag = function (tagName, fn) {
     });
 }
 
-var deleteQuestionTags = function (questionId) {
-    QuestionTag.remove({ question: questionId }).exec();
-}
-
-module.exports.deleteQuestionTags = deleteQuestionTags;
-module.exports.getQuestionsByTag = getQuestionsByTag;
 module.exports.addQuestion = addQuestion;
+module.exports.getQuestionsByTag = getQuestionsByTag;
 module.exports.getAllQuestions = getAllQuestions;
-module.exports.getTagQuestions = getTagQuestions;
 module.exports.getQuestion = getQuestion;
 module.exports.editQuestion = editQuestion;
 module.exports.deleteQuestion = deleteQuestion;

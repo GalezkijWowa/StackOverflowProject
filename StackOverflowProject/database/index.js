@@ -3,13 +3,14 @@ var userDao = require('./userDao');
 var questionDao = require('./questionDao');
 var answerDao = require('./answerDao');
 var tagDao = require('./tagDao');
+var questionTagDao = require('./questionTagDao');
 
 module.exports.addUser = userDao.addUser;
 module.exports.getUserByName = userDao.getUserByName;
 module.exports.getUserById = userDao.getUserById;
 
 
-module.exports.deleteQuestionTags = questionDao.deleteQuestionTags;
+
 module.exports.getQuestionsByTag = questionDao.getQuestionsByTag; 
 module.exports.addQuestion = questionDao.addQuestion;
 module.exports.getAllQuestions = questionDao.getAllQuestions;
@@ -32,3 +33,8 @@ module.exports.getTags = tagDao.getTags;
 module.exports.createTag = tagDao.createTag;
 module.exports.editTag = tagDao.editTag;
 module.exports.deleteTag = tagDao.deleteTag;
+
+module.exports.addQuestionTag = questionTagDao.addQuestionTag;
+module.exports.deleteQuestionTags = questionTagDao.deleteQuestionTags;
+module.exports.getQuestionTags = questionTagDao.getQuestionTags;
+module.exports.editQuestionTags = questionTagDao.editQuestionTags;

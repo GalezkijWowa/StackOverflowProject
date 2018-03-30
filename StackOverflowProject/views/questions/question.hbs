@@ -45,6 +45,7 @@
                             <h5><pre class="pre">{{question.description}}</pre></h5>
                             <b id="userName"><span class="glyphicon glyphicon-user"></span>{{user.username}} last update: </b> {{formatDate question.dateofcreation 'MMMM Do YYYY, h:mm:ss a'}}
                             <hr />
+                            <h3>Add your comment</h3>
                             <form id="addanswer" class="form-horizontal" method="post" action="/profile/addAnswer">
                                 <textarea name="text" id="message" class="form-control" rows="6" value="" required></textarea>
                                 <div class="form-group" hidden="hidden">
@@ -55,7 +56,7 @@
                                 </div>
                             </form>
                             <hr />
-                            <h3>Comments:</h3>
+                            <h3>Comments</h3>
                             {{#each answers}}
                             <b><span class="glyphicon glyphicon-user"></span>{{this.authorname}} </b> {{formatDate this.dateofupdate 'MMMM Do YYYY, h:mm:ss a'}}
                             <form name="ratings" method="post" action="/profile/answervote">
@@ -87,6 +88,29 @@
                             {{/each}}
                         </div>
                     </div>
+                </div>
+                
+                <div class="col-sm-2">
+                    {{#if tags}}
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="panel-heading" style="background-color:deepskyblue">
+                                    <h3 class="panel-title">Tags</h3>
+                                </div>
+                                <hr />
+                                {{#each tags}}
+                                <a href="/questions/tag/{{this.tagname}}" class="btn btn-info btn-sm">{{this.tagname}}</a>
+                                {{/each}}
+                            </div>
+                        </div>
+                    {{else}}
+                        <div class="panel-body">
+                            <div class="panel-heading" style="background-color:deepskyblue">
+                                <h3 class="panel-title">No tags</h3>
+                            </div>
+                            <hr />
+                        </div>
+                    {{/if}}
                 </div>
             </div>
         </div>

@@ -12,7 +12,6 @@ router.get('/admin/tags', function (req, res) {
 
 router.post('/admin/createTag', function (req, res) {
     database.checkTag(req.body.tagName, function (result) {
-        console.log(result);
         if (result) {
             database.createTag(req.body.tagName);
         }
@@ -26,6 +25,7 @@ router.post('/admin/editTag', function (req, res) {
         console.log(result);
         if (result) {
             database.editTag(req.body.tagId, req.body.tagName);
+            database.editQuestionTags(req.body.oldTag, req.body.tagName);
         }
         res.redirect('/admin/tags');
     });
@@ -33,7 +33,10 @@ router.post('/admin/editTag', function (req, res) {
 });
 
 router.post('/admin/deleteTag', function (req, res) {
-    database.deleteTag(req.body.tagId);
+    database.deleteQuestionTags(req.body.oldTag, function (result) {
+
+    });
+    //database.deleteTag(req.body.tagId);
     res.redirect('/admin/tags');
 });
 

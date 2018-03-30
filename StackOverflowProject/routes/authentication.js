@@ -9,8 +9,11 @@ router.get('/auth/register', function (req, res) {
 router.post('/auth/register', function (req, res) {
     if (req.body.password == req.body.confirmpassword) {
         database.addUser(req.body.username, req.body.password, "user");
+        res.redirect("/auth/login");
     }
-    res.redirect("/auth/register");
+    else {
+        res.redirect("/auth/register");
+    }
 });
 
 router.get('/auth/login', function (req, res) {

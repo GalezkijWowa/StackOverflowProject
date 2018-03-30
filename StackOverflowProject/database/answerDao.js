@@ -24,8 +24,8 @@ var getAnswers = function (questionId, fn) {
         fn(result);
         return result;
     });
-    
 }
+
 var editAnswer = function (answerId, text) {
     Answer.update({ _id: answerId }, { text:text, dateofupdate: new Date(Date.now()) }).exec();
 }
