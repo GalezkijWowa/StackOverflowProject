@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../../public/stylesheets/list.css" />
     <link rel="stylesheet" href="../../public/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../public/stylesheets/main.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="../../public/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script src="../../public/javascripts/profile.js"></script>
@@ -41,11 +42,11 @@
                                 <b>{{question.rating}}</b>
                             </form>
                             <hr />
-                            <h5>{{question.description}}</h5>
+                            <h5><pre class="pre">{{question.description}}</pre></h5>
                             <b id="userName"><span class="glyphicon glyphicon-user"></span>{{user.username}} last update: </b> {{formatDate question.dateofcreation 'MMMM Do YYYY, h:mm:ss a'}}
                             <hr />
                             <form id="addanswer" class="form-horizontal" method="post" action="/profile/addAnswer">
-                                <textarea name="text" id="message" class="form-control" rows="6" value=""></textarea>
+                                <textarea name="text" id="message" class="form-control" rows="6" value="" required></textarea>
                                 <div class="form-group" hidden="hidden">
                                     <input name="questionId" class="form-control" value={{question._id}} />
                                 </div>
@@ -73,13 +74,13 @@
                                 {{this.rating}}
                             </form>
                             {{#if (eq2 this.author ../user._id "admin" ../user.role)}}
-                                <a data-target="#editAnswerModal" data-id={{this.question}} data-answer={{this._id}} data-text={{this.text}} class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                <a data-target="#editAnswerModal" data-id={{this.question}} data-answer={{this._id}} data-text="{{this.text}}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                                 <a data-target="#deleteAnswerModal" data-id={{this.question}} data-answer={{this._id}} class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete" data-param="MyOwnParam">&#xE872;</i></a>
                             {{/if}}
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <div class="col-md-11">
-                                        <p>{{this.text}}</p>
+                                        <pre class="pre">{{this.text}}</pre>
                                     </div>
                                 </div>
                             </div>
@@ -115,7 +116,7 @@
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                         <input type="submit" class="btn btn-info" value="Save">
-                    </div
+                    </div>
                 </form>
             </div>
         </div>

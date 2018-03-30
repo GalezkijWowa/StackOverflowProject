@@ -235,18 +235,6 @@
     </Compile>
     <Compile Include="server.js" />
     <Compile Include="routes\index.js" />
-    <Compile Include="utils\index.js">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="utils\log.js">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="utils\mongoose.js">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="utils\validate.js">
-      <SubType>Code</SubType>
-    </Compile>
     <Content Include="config\config.json">
       <SubType>Code</SubType>
     </Content>
@@ -342,7 +330,6 @@
     <Folder Include="public\jquery\src\traversing\" />
     <Folder Include="public\jquery\src\traversing\var\" />
     <Folder Include="public\jquery\src\var\" />
-    <Folder Include="utils\" />
     <Folder Include="public\" />
     <Folder Include="public\images\" />
     <Folder Include="public\javascripts\" />

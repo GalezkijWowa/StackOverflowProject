@@ -1,7 +1,7 @@
 ﻿{
   "port": 1337,
   "db": {
-    "connection": "mongodb://localhost:27017/TestMyTestDb5",
+    "connection": "mongodb://localhost:27017/StackOverflow",
     "name": "db_name",
     "options": {
       "server": {

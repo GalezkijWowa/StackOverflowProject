@@ -5,8 +5,7 @@ Schema = mongoose.Schema;
 var Tag = new Schema({
     tagname: {
         type: String,
-        unique: true,
-        required: true
+        unique: true
     }
 });
 module.exports = mongoose.model('Tag', Tag);

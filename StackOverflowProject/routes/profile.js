@@ -13,7 +13,8 @@ router.get('/profile', function (req, res) {
 });
 
 router.post('/profile/addAnswer', function (req, res) {
-    database.addAnswer(req.body.questionId, req.user.username ,req.user._id, req.body.text);
+    console.log(req.body.text);
+    database.addAnswer(req.body.questionId, req.user.username, req.user._id, req.body.text);
     res.redirect("/questions/" + req.body.questionId);
 });
 

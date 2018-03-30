@@ -7,8 +7,10 @@ router.get('/auth/register', function (req, res) {
     res.render('authentication/register.hbs');
 });
 router.post('/auth/register', function (req, res) {
-    database.addUser(req.body.username, req.body.password, "user");
-    res.redirect("/");
+    if (req.body.password == req.body.confirmpassword) {
+        database.addUser(req.body.username, req.body.password, "user");
+    }
+    res.redirect("/auth/register");
 });
 
 router.get('/auth/login', function (req, res) {
