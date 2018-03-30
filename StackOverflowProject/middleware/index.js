@@ -20,12 +20,14 @@ module.exports = function (app, express) {
     app.set('views', path.join(__dirname, '../views'));
     const {
         eq,
+        eq2,
         formatDate
     } = require('../helpers/hbs');
 
     app.engine('.hbs', exphbs({
         helpers: {
             eq: eq,
+            eq2: eq2,
             formatDate: formatDate
         },
         precompiled: ['views/partials'],

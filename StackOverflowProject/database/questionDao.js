@@ -23,7 +23,8 @@ var addQuestion = function (author, title, description, tags) {
     question.save(function (err, next) {
         if (err) { next(err) }
     });
-    if (typeof tags == 'string') {
+    if (tags == null) { }
+    else if (typeof tags == 'string') {
         addQuestionTag(question._id, tags);
     }
     else {

@@ -41,13 +41,9 @@
                                 <td>{{formatDate this.dateofupdate 'MMMM Do YYYY, h:mm:ss a'}}</td>
                                 <td>{{this.rating}}</td>
                                 <td>
-                                    {{#if (eq ../user.role "admin")}}
-                                    <a data-target="#editQuestionModal" data-id={{this._id}} data-title={{this.title}} data-text={{this.description}} class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                    <a data-target="#deleteQuestionModal" data-id={{this._id}} class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                                    {{/if}}
-                                    {{#if (eq this.author ../user._id)}}
-                                    <a data-target="#editQuestionModal" data-id={{this._id}} data-title={{this.title}} data-text={{this.description}} class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                    <a data-target="#deleteQuestionModal" data-id={{this._id}} class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                    {{#if (eq2 ../user.role "admin" this.author ../user._id)}}
+                                        <a data-target="#editQuestionModal" data-id={{this._id}} data-title={{this.title}} data-text={{this.description}} class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                        <a data-target="#deleteQuestionModal" data-id={{this._id}} class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                     {{/if}}
                                 </td>
                             </tr>
