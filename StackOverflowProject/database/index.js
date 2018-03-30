@@ -8,6 +8,8 @@ module.exports.addUser = userDao.addUser;
 module.exports.getUserByName = userDao.getUserByName;
 module.exports.getUserById = userDao.getUserById;
 
+
+module.exports.deleteQuestionTags = questionDao.deleteQuestionTags;
 module.exports.getQuestionsByTag = questionDao.getQuestionsByTag; 
 module.exports.addQuestion = questionDao.addQuestion;
 module.exports.getAllQuestions = questionDao.getAllQuestions;

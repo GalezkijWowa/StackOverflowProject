@@ -18,15 +18,20 @@ var addQuestion = function (author, title, description, tags) {
     var question = new Question({
         author: author,
         title: title,
-        description: description,
-        tags: tags
+        description: description
     });
     question.save(function (err, next) {
         if (err) { next(err) }
     });
-    tags.forEach(function (element) {
-        addQuestionTag(question._id, element);
-    });
+    if (typeof tags == 'string') {
+        addQuestionTag(question._id, tags);
+    }
+    else {
+        tags.forEach(function (element) {
+            addQuestionTag(question._id, element);
+        });
+    }
+    
 }
 
 var getAllQuestions = function () {
@@ -78,21 +83,29 @@ var addQuestionTag = function (questionId, tagname) {
 var getQuestionsByTag = function (tagName, fn) {
     var result = [];
     QuestionTag.find({ tagname: tagName }, function (err, tags) {
-        tags.forEach(function (element) {
-            Question.find({ }, function (err, question) {
-                console.log(question);
-            //    result.push(question);
-            //    if (tags[tags.length - 1].question.toString() == question._id.toString()) {
-            //        //fn(result);
-            //        //return result;
-            //    }
-            });
-        }); 
-        fn(tags);
-        return tags;
+        if (tags.length == 0) {
+            fn(result);
+            return result;
+        }
+        else {
+            tags.forEach(function (element) {
+                Question.findOne({ _id: element.question }, function (err, question) {
+                    result.push(question);
+                    if (tags[tags.length - 1].question.toString() == question._id.toString()) {
+                        fn(result);
+                        return result;
+                    }
+                });
+            }); 
+        }
     });
 }
 
+var deleteQuestionTags = function (questionId) {
+    QuestionTag.remove({ question: questionId }).exec();
+}
+
+module.exports.deleteQuestionTags = deleteQuestionTags;
 module.exports.getQuestionsByTag = getQuestionsByTag;
 module.exports.addQuestion = addQuestion;
 module.exports.getAllQuestions = getAllQuestions;

@@ -22,8 +22,7 @@ router.get('/questions/:id', function (req, res) {
 
 router.get('/questions/tag/:id', function (req, res) {
     database.getQuestionsByTag(req.params.id, function (questions) {
-        res.send("IN METHOD");
-        //res.render('questions/list.hbs', {questions: questions});
+        res.render('questions/list.hbs', { questions: questions });
     });
 });
 
