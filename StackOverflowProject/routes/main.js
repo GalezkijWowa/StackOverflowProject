@@ -3,7 +3,7 @@
 exports.home = function (req, res, next) {
     var result = database.getTags();
 
-    result.exec(function (err, tags) {
+    result.then(function (tags) {
         res.render('main/home.hbs', { tags: tags });
     });
 };

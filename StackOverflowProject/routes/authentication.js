@@ -8,8 +8,9 @@ router.get('/auth/register', function (req, res) {
 });
 router.post('/auth/register', function (req, res) {
     if (req.body.password == req.body.confirmpassword) {
-        database.addUser(req.body.username, req.body.password, "user");
-        res.redirect("/auth/login");
+        database.addUser(req.body.username, req.body.password, "user").then(function () {
+            res.redirect("/auth/login");
+        });
     }
     else {
         res.redirect("/auth/register");
@@ -24,7 +25,7 @@ router.post('/auth/login', function (req, res) {
     var username = req.body.username;
     var password = req.body.password;
 
-    database.getUserByName(username, function (user) {
+    database.getUserByName(username).then(function (user) {
         if (user) {
             if (user.checkPassword(password)) {
                 req.session.user = user._id;

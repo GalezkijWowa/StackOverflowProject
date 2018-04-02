@@ -5,27 +5,29 @@ var database = require('../database/index');
 router.get('/admin/tags', function (req, res) {
     var result = database.getTags();
 
-    result.exec(function (err, tags) {
+    result.then(function(tags) {
         res.render('admin/tagList.hbs', { tags: tags });
     });
 });
 
 router.post('/admin/createTag', function (req, res) {
-    database.checkTag(req.body.tagName, function (result) {
-        if (result) {
-            database.createTag(req.body.tagName);
+    database.checkTag(req.body.tagName).then(function (tag) {
+        console.log(tag);
+        if (!tag) {
+            database.createTag(req.body.tagName).then();
         }
         res.redirect('/admin/tags');
     });
 });
 
-
 router.post('/admin/editTag', function (req, res) {   
-    database.checkTag(req.body.tagName, function (result) {
-        console.log(result);
-        if (result) {
-            database.editTag(req.body.tagId, req.body.tagName);
-            database.editQuestionTags(req.body.oldTag, req.body.tagName);
+    database.checkTag(req.body.tagName).then(function (tag) {
+        console.log(tag);
+        if (!tag) {
+            Promise.all([
+                database.editTag(req.body.tagId, req.body.tagName),
+                database.editQuestionTags(req.body.oldTag, req.body.tagName)
+            ]).then();
         }
         res.redirect('/admin/tags');
     });
@@ -33,11 +35,10 @@ router.post('/admin/editTag', function (req, res) {
 });
 
 router.post('/admin/deleteTag', function (req, res) {
-    database.deleteQuestionTags(req.body.oldTag, function (result) {
-
+    database.deleteQuestionTagsByName(req.body.oldTag).then(function () {
+        res.redirect('/admin/tags');
     });
-    //database.deleteTag(req.body.tagId);
-    res.redirect('/admin/tags');
+    database.deleteTag(req.body.tagId);
 });
 
 module.exports = router;

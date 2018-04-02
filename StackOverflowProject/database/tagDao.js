@@ -4,35 +4,25 @@ var Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
 
 var getTags = function () {
-    return Tag.find({});
+    return Tag.find({}).exec();
 }
 
 var createTag = function (text) {
     var tag = new Tag({
         tagname: text
     });
-    tag.save(function (err, next) {
-        if (err) { next(err) }
-    });
+    return tag.save();
 }
 
-var checkTag = function (tagname, fn) {
-    Tag.find({ tagname: tagname }, function (err, result) {
-        if (result.length == 0) {
-            fn(true);
-            return true;
-        } else {
-            fn(false);
-            return false;
-        }
-    });
+var checkTag = function (tagname) {
+    return Tag.findOne({ tagname: tagname });
 }
 
 var editTag = function (tagId, tagName) {
     return Tag.update({ _id: tagId }, { tagname: tagName }).exec();
 }
 var deleteTag = function (tagId) {
-    Tag.findByIdAndRemove(id = tagId).exec();
+    return Tag.findByIdAndRemove(id = tagId).exec();
 }
 
 module.exports.checkTag = checkTag;

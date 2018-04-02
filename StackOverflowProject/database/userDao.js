@@ -9,24 +9,15 @@ var addUser = function (username, password, role) {
         password: password,
         role: role
     });
-    user.save(function (err) {
-    });
+    return user.save();
 }
 
-var getUserByName = function (username, fn) {
-    User.findOne({ username: username }, function (err, user) {
-        if (err) return next(err);
-        fn(user);
-        return user;
-    });
+var getUserByName = function (username) {
+    return User.findOne({ username: username });
 }
 
-var getUserById = function (userid, fn) {
-    User.findOne({ _id: userid }, function (err, user) {
-        if (err) return next(err);
-        fn(user);
-        return user;
-    });
+var getUserById = function (userid) {
+    return User.findOne({ _id: userid });
 }
 
 module.exports.getUserById = getUserById;

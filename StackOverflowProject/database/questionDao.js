@@ -7,51 +7,34 @@ var Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
 
 
-var getQuestion = function (questionId, fn) {
-    Question.findById(id = questionId, function (err, result) {
-        fn(result);
-        return result;
-    });
+var getQuestion = function (questionId) {
+    return Question.findById(id = questionId).exec();
 }
 
-var addQuestion = function (author, title, description, tags) {
+var addQuestion = function (author, title, description) {
     var question = new Question({
         author: author,
         title: title,
         description: description
     });
-    question.save(function (err, next) {
-        if (err) { next(err) }
-    });
-    if (tags == null) { }
-    else if (typeof tags == 'string') {
-        addQuestionTag(question._id, tags);
-    }
-    else {
-        tags.forEach(function (element) {
-            addQuestionTag(question._id, element);
-        });
-    }
-    
+    return question.save();
 }
 
 var getAllQuestions = function () {
-    result = Question.find({});
+    result = Question.find({}).exec();
     return result;
 }
 
 var userQuestions = function (userId) {
     result = Question.find({ author: userId});
-    return result;
+    return result.exec();
 }
 
 var editQuestion = function (questionId, title, description) {
-    Question.update({ _id: questionId }, { title: title, description: description, dateofupdate: new Date(Date.now())}).exec();
+    return Question.update({ _id: questionId }, { title: title, description: description, dateofupdate: new Date(Date.now())}).exec();
 }
 var deleteQuestion = function (questionId) {
-    Question.findByIdAndRemove(id = questionId, function (err, question) {
-        Vote.remove({ question: questionId }).exec();
-    }).exec();
+    return Question.findByIdAndRemove(id = questionId).exec();
 }
 var addQuestionVote = function (questionId, userId, points) {
     Vote.findOne({ question: questionId, author: userId }, function (err, value) {
@@ -86,9 +69,11 @@ var getQuestionsByTag = function (tagName, fn) {
                         return result;
                     }
                 });
-            }); 
+            });
         }
     });
+
+    Question.where('_id').in(tags);
 }
 
 module.exports.addQuestion = addQuestion;

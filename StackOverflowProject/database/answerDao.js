@@ -14,20 +14,14 @@ var addAnswer = function (questionId, authorname, authorId, text) {
         text: text
     });
 
-    answer.save(function (err, next) {
-        if (err) { next(err) }
-    });
-
+    return answer.save();
 }
 var getAnswers = function (questionId, fn) {
-    Answer.find({ question: questionId }, function (err, result) {
-        fn(result);
-        return result;
-    });
+    return Answer.find({ question: questionId }).exec();
 }
 
 var editAnswer = function (answerId, text) {
-    Answer.update({ _id: answerId }, { text:text, dateofupdate: new Date(Date.now()) }).exec();
+    return Answer.update({ _id: answerId }, { text:text, dateofupdate: new Date(Date.now()) }).exec();
 }
 
 var addAnswerVote = function (answerId, userId, points) {
@@ -48,17 +42,12 @@ var addAnswerVote = function (answerId, userId, points) {
 }
 
 var deleteAnswers = function (questionId) {
-    Answer.find({ question: questionId }, function (err, answers) {
-        answers.forEach(function (element) {
-            deleteAnswer(element._id);
-        });
-    }).exec();
+    Answer.remove({ question: questionId }).exec();
 }
 
 var deleteAnswer = function (answerId) {
     Vote.remove({ answer: answerId }).exec();
     Answer.findByIdAndRemove(answerId).exec();
-    
 }
 
 module.exports.addAnswer = addAnswer;

@@ -5,14 +5,15 @@ var Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
 
 var editQuestionTags = function (tagName, newTagName) {
-    QuestionTag.update({ tagname: tagName }, { tagname: newTagName }).exec();
+    return QuestionTag.update({ tagname: tagName }, { tagname: newTagName }).exec();
 }
 
-var getQuestionTags = function (questionId, fn) {
-    QuestionTag.find({ question: questionId }, function (err, result) {
-        fn(result);
-        return result;
-    });
+var getQuestionTags = function (questionId) {
+    return QuestionTag.find({ question: questionId }).exec();
+}
+
+var getQuestionTagsByTagName = function (tagName) {
+    return QuestionTag.find({ tagname: tagName }).exec();
 }
 
 var addQuestionTag = function (questionId, tagname) {
@@ -25,11 +26,17 @@ var addQuestionTag = function (questionId, tagname) {
     });
 }
 
-var deleteQuestionTags = function (tagName, fn) {
-    QuestionTag.remove({ tagname: tagName }, function (err, result) { });
+var deleteQuestionTags = function (questionId) {
+    return QuestionTag.remove({ question: questionId }).exec();
+}
+
+var deleteQuestionTagsByName = function (tagName) {
+    return QuestionTag.remove({ tagname: tagName }).exec();
 }
 
 module.exports.addQuestionTag = addQuestionTag;
 module.exports.editQuestionTags = editQuestionTags;
 module.exports.getQuestionTags = getQuestionTags;
+module.exports.getQuestionTagsByTagName = getQuestionTagsByTagName;
 module.exports.deleteQuestionTags = deleteQuestionTags;
+module.exports.deleteQuestionTagsByName = deleteQuestionTagsByName;

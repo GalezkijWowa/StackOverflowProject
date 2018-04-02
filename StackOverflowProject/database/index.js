@@ -36,5 +36,7 @@ module.exports.deleteTag = tagDao.deleteTag;
 
 module.exports.addQuestionTag = questionTagDao.addQuestionTag;
 module.exports.deleteQuestionTags = questionTagDao.deleteQuestionTags;
+module.exports.deleteQuestionTagsByName = questionTagDao.deleteQuestionTagsByName;
 module.exports.getQuestionTags = questionTagDao.getQuestionTags;
 module.exports.editQuestionTags = questionTagDao.editQuestionTags;
+module.exports.getQuestionTagsByTagName = questionTagDao.getQuestionTagsByTagName;
