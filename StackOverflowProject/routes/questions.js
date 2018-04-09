@@ -36,7 +36,9 @@ router.get('/questions/all', function (req, res) {
 });
 
 router.get('/questions/search', function (req, res) {
-    res.send(req.query.text);
+    database.searchQuestions(req.query.text).then(function (questions) {
+        res.render('questions/list', {questions: questions})
+    });
 });
 
 router.get('/questions/top', function (req, res) {

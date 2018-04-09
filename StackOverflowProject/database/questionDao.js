@@ -68,6 +68,17 @@ var getTopQuestions = function (number) {
     return Question.find({}).sort({ rating: -1 }).limit(number).exec();
 }
 
+var searchQuestions = function (text) {
+
+    return Question.find({
+        $or: [
+            {  'title' : { $regex: new RegExp(text, 'i') } },
+            { 'description': { $regex: new RegExp(text, 'i') } }
+        ]
+    }).exec();
+}
+
+module.exports.searchQuestions = searchQuestions;
 module.exports.getTopQuestions = getTopQuestions;
 module.exports.deleteQuestionVotes = deleteQuestionVotes;
 module.exports.checkQuestionVote = checkQuestionVote;

@@ -18,7 +18,7 @@ module.exports.setUserReputation = userDao.setUserReputation;
 module.exports.openUserAccess = userDao.openUserAccess;
 module.exports.getAllUsers = userDao.getAllUsers;
 
-module.exports.getQuestionsByTag = questionDao.getQuestionsByTag; 
+module.exports.searchQuestions= questionDao.searchQuestions;
 module.exports.addQuestion = questionDao.addQuestion;
 module.exports.getAllQuestions = questionDao.getAllQuestions;
 module.exports.getTagQuestions = questionDao.getTagQuestions;
