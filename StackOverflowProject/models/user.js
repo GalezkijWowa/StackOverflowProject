@@ -16,6 +16,17 @@ var User = new Schema({
     role: {
         type: String,
         required: true
+    },
+    email: {
+        type: String
+    },
+    reputation: {
+        type: Number,
+        default: 0
+    },
+    access: {
+        type: Boolean,
+        default: false
     }
 });
 

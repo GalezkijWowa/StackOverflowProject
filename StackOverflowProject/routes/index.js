@@ -11,7 +11,8 @@ var express = require('express'),
     error = require('./error'),
     admin = require('./admin');
 
-router.get('/',  main.home);
+
+router.get('/', main.home);
 router.get('/auth/*', authentication);
 router.post('/auth/*', authentication);
 
@@ -21,8 +22,8 @@ router.get('/profile/*', check, profile);
 router.post('/profile/*', check, profile);
 
 
-router.post('/admin/*', checkAdmin, admin);
-router.get('/admin/*', checkAdmin, admin);
+router.post('/admin/*', check, checkAdmin, admin);
+router.get('/admin/*', check, checkAdmin, admin);
 
 
 module.exports = router;

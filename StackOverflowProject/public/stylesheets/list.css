@@ -260,3 +260,6 @@ table.table .avatar {
 .modal form label {
     font-weight: normal;
 }
+.navbar-form{
+    margin-bottom:15px;
+}

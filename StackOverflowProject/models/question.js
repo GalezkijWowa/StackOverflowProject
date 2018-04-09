@@ -7,6 +7,10 @@ var Question = new Schema({
         ref: 'User',
         required: true
     },
+    authorname: {
+        type: String,
+        required: true
+    },
     title: {
         type: String
     },

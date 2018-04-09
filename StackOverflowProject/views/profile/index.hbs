@@ -16,31 +16,44 @@
 </head>
 <body>
     {{> layout}}
-    <div class="container">
-        <div class="table-wrapper">
-            <div class="table-title">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h2>Manage <b>Questions</b></h2>
-                    </div>
-                    <div class="col-sm-6">
-                        <a href="/profile/createQuestion" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Question</span></a>
+    <div class="col-md-10 col-md-offset-1">
+        <div class="container">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h2>Manage <b>Questions</b></h2>
+                        </div>
+                        <div class="col-sm-5">
+                            <h2>
+                                Reputation <b>{{user.reputation}}</b>
+                                {{#each badges}}
+                                    <a href="#{{this.name}}" style="color:azure;">
+                                        <span class="{{this.icon}}"></span>
+                                    </a>
+                                 {{/each}}
+                            </h2>
+                            
+                        </div>
+                        <div class="col-sm-3">
+                            <a href="/profile/createQuestion" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Question</span></a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>Date of creation
-                        </th>
-                        <th>Title</th>
-                        <th>LastUpdate</th>
-                        <th>Rating</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each questions}}
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                Date of creation
+                            </th>
+                            <th>Title</th>
+                            <th>LastUpdate</th>
+                            <th>Rating</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each questions}}
                         <tr>
                             <td>{{formatDate this.dateofcreation 'MMMM Do YYYY, h:mm:ss a'}}</td>
                             <td><a href="/questions/{{this._id}}">{{this.title}}</a></td>
@@ -51,64 +64,65 @@
                                 <a data-target="#deleteQuestionModal" data-id={{this._id}} class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                             </td>
                         </tr>
-                    {{/each}}
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <!-- Edit Modal HTML -->
-    <div id="editQuestionModal" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form method="post" action="/profile/editQuestion">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Edit Question</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </div>
-                    <div class="form-group" hidden="hidden">
-                        <input type="text" name="questionId" id="questionId" value="" />
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label>Title</label>
-                            <input type="text" name="title" id="title" class="form-control" vaule="" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Description</label>
-                            <textarea class="form-control" name="description" id="text" rows="10" description="description" vaule="" required></textarea>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                        <input type="submit" class="btn btn-info" value="Save">
-                    </div>
-                </form>
+                        {{/each}}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-    <!-- Delete Modal HTML -->
-    <div id="deleteQuestionModal" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form method="post" action="/profile/deleteQuestion">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Delete Question</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </div>
-                    <div class="form-group" hidden="hidden">
-                        <input type="text" name="questionId" id="questionId"/>
-                    </div>
-                    <div class="modal-body">
-                        <p>Are you sure you want to delete these Record?</p>
-                        <p class="text-warning"><small>This action cannot be undone.</small></p>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                        <input type="submit" class="btn btn-danger" value="Delete">
-                    </div>
-                </form>
+        <!-- Edit Modal HTML -->
+        <div id="editQuestionModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form method="post" action="/profile/editQuestion">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Edit Question</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="form-group" hidden="hidden">
+                            <input type="text" name="questionId" id="questionId" value="" />
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Title</label>
+                                <input type="text" name="title" id="title" class="form-control" vaule="" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea class="form-control" name="description" id="text" rows="10" description="description" vaule="" required></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                            <input type="submit" class="btn btn-info" value="Save">
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+        <!-- Delete Modal HTML -->
+        <div id="deleteQuestionModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form method="post" action="/profile/deleteQuestion">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Delete Question</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="form-group" hidden="hidden">
+                            <input type="text" name="questionId" id="questionId" />
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure you want to delete these Record?</p>
+                            <p class="text-warning"><small>This action cannot be undone.</small></p>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                            <input type="submit" class="btn btn-danger" value="Delete">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 </body>
 </html> 

@@ -11,7 +11,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="../../public/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script src="../../public/javascripts/profile.js"></script>
-
 </head>
 <body>
     {{> layout}}
@@ -32,9 +31,10 @@
                                 <thead>
                                     <tr>
                                         <th>
+                                            Date
                                         </th>
                                         <th>Title</th>
-                                        <th>Date</th>
+                                        <th>Last Update</th>
                                         <th>Rating</th>
                                         <th>Actions</th>
                                     </tr>
@@ -59,6 +59,48 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <form role="form" action="/questions/all" method="get">
+
+                <div class="form-group" hidden="hidden">
+                    <input type="text" name="rowsPerPage" id="answer" value="3" />
+                </div>
+
+                <div style="margin-top:10px" class="form-group">
+                    <div class="col-sm-12 controls">
+                        <p><button id="btn-login" type="submit" class="btn btn-warning">3</button></p>
+                    </div>
+                </div>
+            </form>
+            <form role="form" action="/questions/all" method="get">
+                <div class="form-group" hidden="hidden">
+                    <input type="text" name="rowsPerPage" id="answer" value="5" />
+                </div>
+                <div style="margin-top:10px" class="form-group">
+                    <div class="col-sm-12 controls">
+                        <p><button id="btn-login" type="submit" class="btn btn-warning">5</button></p>
+                    </div>
+                </div>
+            </form>
+            <form role="form" action="/questions/all" method="get">
+
+                <div class="form-group" hidden="hidden">
+                    <input type="text" name="rowsPerPage" id="answer" value="10" />
+                </div>
+
+                <div style="margin-top:10px" class="form-group">
+                    <div class="col-sm-12 controls">
+                        <p><button id="btn-login" type="submit" class="btn btn-warning">10</button></p>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <button id="btn-login" type="submit" class="btn btn-warning"><a href="#">50</a></button>
+        <div class="btn-toolbar">
+            <div class="btn-group">
+                {{{page}}}
             </div>
         </div>
     </div>

@@ -6,14 +6,19 @@ var async = require('async');
 var Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
 
+var userQuestions = function (userId) {
+    result = Question.find({ author: userId });
+    return result.exec();
+}
 
 var getQuestion = function (questionId) {
     return Question.findById(id = questionId).exec();
 }
 
-var addQuestion = function (author, title, description) {
+var addQuestion = function (author, authorname, title, description) {
     var question = new Question({
         author: author,
+        authorname: authorname,
         title: title,
         description: description
     });
@@ -25,11 +30,6 @@ var getAllQuestions = function () {
     return result;
 }
 
-var userQuestions = function (userId) {
-    result = Question.find({ author: userId});
-    return result.exec();
-}
-
 var editQuestion = function (questionId, title, description) {
     return Question.update({ _id: questionId }, { title: title, description: description, dateofupdate: new Date(Date.now())}).exec();
 }
@@ -37,45 +37,40 @@ var deleteQuestion = function (questionId) {
     return Question.findByIdAndRemove(id = questionId).exec();
 }
 var addQuestionVote = function (questionId, userId, points) {
-    Vote.findOne({ question: questionId, author: userId }, function (err, value) {
-        if (value == undefined) {
-            var vote = new Vote({
-                author: userId,
-                question: questionId
-            });
-            vote.save(function (err, next) {
-                if (err) { next(err) }
-            });
-            Question.findById({ _id: questionId }, function (err, value) {
-                Question.update({ _id: questionId }, { rating: value.rating + parseInt(points) }).exec();
-            });
-        }
+    var vote = new Vote({
+        author: userId,
+        question: questionId
+    });
+    vote.save(function (err, next) {
+        if (err) { next(err) }
+    });
+    Question.findById({ _id: questionId }, function (err, value) {
+        Question.update({ _id: questionId }, { rating: value.rating + parseInt(points) }).exec();
     });
 }
 
-var getQuestionsByTag = function (tagName, fn) {
+var checkQuestionVote = function (questionId, userId) {
+    return Vote.findOne({ question: questionId, author: userId }).exec();
+}
+
+var deleteQuestionVotes = function (quesionId) {
+    return Vote.remove({ question: quesionId }).exec();
+}
+
+var getQuestionsByTag = function (tagName) {
     var result = [];
-    QuestionTag.find({ tagname: tagName }, function (err, tags) {
-        if (tags.length == 0) {
-            fn(result);
-            return result;
-        }
-        else {
-            tags.forEach(function (element) {
-                Question.findOne({ _id: element.question }, function (err, question) {
-                    result.push(question);
-                    if (tags[tags.length - 1].question.toString() == question._id.toString()) {
-                        fn(result);
-                        return result;
-                    }
-                });
-            });
-        }
+    return QuestionTag.find({ tagname: tagName }).then(function (qTags) {
+        var qIds = qTags.map(q => q.question);
+        return Question.find({ _id: { $in: qIds } }).exec();
     });
-
-    Question.where('_id').in(tags);
+}
+var getTopQuestions = function (number) {
+    return Question.find({}).sort({ rating: -1 }).limit(number).exec();
 }
 
+module.exports.getTopQuestions = getTopQuestions;
+module.exports.deleteQuestionVotes = deleteQuestionVotes;
+module.exports.checkQuestionVote = checkQuestionVote;
 module.exports.addQuestion = addQuestion;
 module.exports.getQuestionsByTag = getQuestionsByTag;
 module.exports.getAllQuestions = getAllQuestions;

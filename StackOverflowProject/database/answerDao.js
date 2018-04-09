@@ -16,7 +16,7 @@ var addAnswer = function (questionId, authorname, authorId, text) {
 
     return answer.save();
 }
-var getAnswers = function (questionId, fn) {
+var getAnswers = function (questionId) {
     return Answer.find({ question: questionId }).exec();
 }
 
@@ -25,24 +25,28 @@ var editAnswer = function (answerId, text) {
 }
 
 var addAnswerVote = function (answerId, userId, points) {
-    Vote.findOne({ answer: answerId, author: userId }, function (err, value) {
-        if (value == undefined) {
-            var vote = new Vote({
-                author: userId,
-                answer: answerId
-            });
-            vote.save(function (err, next) {
-                if (err) { next(err) }
-            });
-            Answer.findById({ _id: answerId }, function (err, value) {
-                Answer.update({ _id: answerId }, { rating: value.rating + parseInt(points) }).exec();
-            });
-        }
+    var vote = new Vote({
+        author: userId,
+        answer: answerId
+    });
+    vote.save(function (err, next) {
+        if (err) { next(err) }
+    });
+    Answer.findById({ _id: answerId }, function (err, value) {
+        Answer.update({ _id: answerId }, { rating: value.rating + parseInt(points) }).exec();
     });
 }
 
+var checkAnswerVote = function (answerId, userId) {
+    return Vote.findOne({ answer: answerId, author: userId}).exec();
+}
+
 var deleteAnswers = function (questionId) {
-    Answer.remove({ question: questionId }).exec();
+    return Answer.find({ question: questionId }).then(function (answers) {
+        answers.forEach(function (element) {
+            deleteAnswer(element._id);
+        });
+    });
 }
 
 var deleteAnswer = function (answerId) {
@@ -50,6 +54,17 @@ var deleteAnswer = function (answerId) {
     Answer.findByIdAndRemove(answerId).exec();
 }
 
+var getTopAnswers = function (number) {
+    return Answer.find({}).sort({ rating: -1 }).limit(number).exec();
+}
+
+var getUserAnswers = function (userId) {
+    return Answer.find({ author: userId }).exec();
+}
+
+module.exports.getUserAnswers = getUserAnswers;
+module.exports.getTopAnswers = getTopAnswers;
+module.exports.checkAnswerVote = checkAnswerVote;
 module.exports.addAnswer = addAnswer;
 module.exports.getAnswers = getAnswers;
 module.exports.editAnswer = editAnswer;

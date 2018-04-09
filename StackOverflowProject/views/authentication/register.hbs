@@ -18,11 +18,17 @@
                     <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="/auth/login">Sign In</a></div>
                 </div>
                 <div class="panel-body">
-                    <form id="signupform" class="form-horizontal" role="form" action="/auth/register" method = "post">
+                    <form id="signupform" class="form-horizontal" role="form" action="/auth/register" method="post">
                         <div class="form-group">
                             <label for="username" class="col-md-3 control-label">User Name</label>
                             <div class="col-md-9">
                                 <input type="text" class="form-control" name="username" placeholder="User Name" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="username" class="col-md-3 control-label">Email</label>
+                            <div class="col-md-9">
+                                <input type="email" class="form-control" name="email" placeholder="example@gmail.com" required>
                             </div>
                         </div>
                         <div class="form-group">

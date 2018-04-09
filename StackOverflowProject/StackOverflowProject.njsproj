@@ -36,7 +36,13 @@
     <Compile Include="database\answerDao.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="database\badgeDao.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="database\index.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="database\keyDao.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="database\questionDao.js">
@@ -78,6 +84,9 @@
     <Compile Include="models\answerVote.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="models\badge.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="models\question.js">
       <SubType>Code</SubType>
     </Compile>
@@ -91,6 +100,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="models\questionVote.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="models\verifyKey.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="public\bootstrap-3.3.7-dist\js\bootstrap.js" />
@@ -238,7 +250,13 @@
     </Compile>
     <Compile Include="server.js" />
     <Compile Include="routes\index.js" />
-    <Content Include="config\config.json">
+    <Compile Include="utils\badgeScript.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="utils\emailSender.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Content Include="config\config2.json">
       <SubType>Code</SubType>
     </Content>
     <Content Include="package.json" />
@@ -282,6 +300,9 @@
     <Content Include="views\main\home.hbs">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="utils\messageTemplate.hbs">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="views\partials\layout.hbs">
       <SubType>Code</SubType>
     </Content>
@@ -297,6 +318,9 @@
     <Content Include="views\questions\question.hbs">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="views\questions\top.hbs">
+      <SubType>Code</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="middleware\" />
@@ -304,6 +328,7 @@
     <Folder Include="config\" />
     <Folder Include="database\" />
     <Folder Include="helpers\" />
+    <Folder Include="utils\" />
     <Folder Include="public\bootstrap-3.3.7-dist\" />
     <Folder Include="public\bootstrap-3.3.7-dist\css\" />
     <Folder Include="public\bootstrap-3.3.7-dist\fonts\" />
