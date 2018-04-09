@@ -256,7 +256,7 @@
     <Compile Include="utils\emailSender.js">
       <SubType>Code</SubType>
     </Compile>
-    <Content Include="config\config2.json">
+    <Content Include="config\config.json">
       <SubType>Code</SubType>
     </Content>
     <Content Include="package.json" />

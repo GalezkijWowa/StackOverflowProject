@@ -260,3 +260,4 @@ paket-files/
 __pycache__/
 *.pyc
 /StackOverflowProject/config/config2.json
+/StackOverflowProject/config/config.json
