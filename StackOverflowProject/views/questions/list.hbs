@@ -68,15 +68,12 @@
             </div>
         </div>
     </div>
-    <!--<script>
-        $(".paginator-page, .paginator-previous, .paginator-next, .paginator-current").each(function () {
-            alert(this.attr('href'));
+    <script>
+        $(".paginator-page, .paginator-previous, .paginator-next, .paginator-current").replaceWith(function (index, oldHTML) {
+            return $('<a href="' + this + '" class="btn btn-primary" >').html(oldHTML);
         });
-        //    replaceWith(function (index, oldHTML) {
-        //    alert(oldHTML.attr('href'));
-        //    return $('<a href="' + '#' + '" class="btn btn-primary" >').html(oldHTML);
-        //});
-    </script>-->
+
+    </script>
     <form role="form" action="/questions/all" method="get" id="form"></form>
     <!-- Edit Modal HTML -->
     <div id="editQuestionModal" class="modal fade">
