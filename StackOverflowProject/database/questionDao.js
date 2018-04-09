@@ -25,9 +25,8 @@ var addQuestion = function (author, authorname, title, description) {
     return question.save();
 }
 
-var getAllQuestions = function () {
-    result = Question.find({}).exec();
-    return result;
+var getAllQuestions = function (from, to) {
+    return result = Question.find({}).skip(from).limit(to-from).exec();
 }
 
 var editQuestion = function (questionId, title, description) {
@@ -64,12 +63,23 @@ var getQuestionsByTag = function (tagName) {
         return Question.find({ _id: { $in: qIds } }).exec();
     });
 }
-var getTopQuestions = function (number) {
-    return Question.find({}).sort({ rating: -1 }).limit(number).exec();
+var getTopQuestions = function (from, to, sign) {
+    return Question.find({}).sort({ rating: sign }).skip(from).limit(to - from).exec();
+}
+var getQuestionsByTitle = function (from, to, sign) {
+    return Question.find({}).sort({ title: sign }).skip(from).limit(to - from).exec();
+}
+var getQuestionsByDate = function (from, to, sign) {
+    return Question.find({}).sort({ dateofcreation: sign }).skip(from).limit(to - from).exec();
+}
+var getQuestionsByLastUpdate = function (from, to, sign) {
+    return Question.find({}).sort({ dateofupdate: sign }).skip(from).limit(to - from).exec();
+}
+var getQuestionsSize = function () {
+    return Question.count().exec();
 }
 
 var searchQuestions = function (text) {
-
     return Question.find({
         $or: [
             {  'title' : { $regex: new RegExp(text, 'i') } },
@@ -78,6 +88,10 @@ var searchQuestions = function (text) {
     }).exec();
 }
 
+module.exports.getQuestionsSize = getQuestionsSize
+module.exports.getQuestionsByTitle = getQuestionsByTitle;
+module.exports.getQuestionsByDate = getQuestionsByDate;
+module.exports.getQuestionsByLastUpdate = getQuestionsByLastUpdate;
 module.exports.searchQuestions = searchQuestions;
 module.exports.getTopQuestions = getTopQuestions;
 module.exports.deleteQuestionVotes = deleteQuestionVotes;

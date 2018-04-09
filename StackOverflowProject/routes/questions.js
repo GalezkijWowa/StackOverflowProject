@@ -8,31 +8,114 @@ var config = require('../config');
 var pagination = require('pagination');
 var rowsPerPage = 3;
 
-router.get('/questions/all', function (req, res) {
-    var result = database.getAllQuestions(req.user._id);
-    result.then(function (result) {
-        var current = 1;
-        var totalCount = Object.keys(result).length;
-        var questions = new Array();
-        questions = [].concat(result);
+var bTitle = -1;
+var bDate = -1;
+var bUpdate = -1;
+var bRating = -1;
 
-        if (req.query.page) {
-            current = req.query.page;
-        }
-        if (req.query.rowsPerPage) {
-            rowsPerPage = req.query.rowsPerPage;
-        }
-        var paginator = new pagination.SearchPaginator({ prelink: '/questions/all', current: current, rowsPerPage: rowsPerPage, totalResult: totalCount });
+router.get('/questions/all', function (req, res) {
+    var current = 1;
+    if (req.query.page) {
+        current = req.query.page;
+    }
+    if (req.query.rowsPerPage) {
+        rowsPerPage = req.query.rowsPerPage;
+    }
+
+    Promise.all([
+        database.getAllQuestions((current - 1) * rowsPerPage, current * rowsPerPage),
+        database.getQuestionsSize()
+    ]).then(function (results) {
+        var paginator = new pagination.SearchPaginator({ prelink: '/questions/all', current: current, rowsPerPage: rowsPerPage, totalResult: results[1] });
         var text = new String();
         text = paginator.render();
+        res.render('questions/list.hbs', { questions: results[0], page: text });
+    })
+});
 
-        //text.replace('<a', '<button id="btn - login" type="submit" class="btn btn - warning"><a', function (s, newString) {
-        //    console.log(text);
-        //});
-        //text.replace('/a>', '/a></button>');
+router.get('/questions/date', function (req, res) {
+    var current = 1;
+    if (req.query.page) {
+        current = req.query.page;
+    }
+    if (req.query.rowsPerPage) {
+        rowsPerPage = req.query.rowsPerPage;
+    }
 
-        res.render('questions/list.hbs', { questions: questions.slice((current - 1) * rowsPerPage, current * rowsPerPage), page: text });
-    });
+    Promise.all([
+        database.getQuestionsByLastUpdate((current - 1) * rowsPerPage, current * rowsPerPage, bDate),
+        database.getQuestionsSize()
+    ]).then(function (results) {
+        bDate = - bDate;
+        var paginator = new pagination.SearchPaginator({ prelink: '/questions/update', current: current, rowsPerPage: rowsPerPage, totalResult: results[1] });
+        var text = new String();
+        text = paginator.render();
+        res.render('questions/list.hbs', { questions: results[0], page: text });
+    })
+});
+
+router.get('/questions/title', function (req, res) {
+    var current = 1;
+    if (req.query.page) {
+        current = req.query.page;
+    }
+    if (req.query.rowsPerPage) {
+        rowsPerPage = req.query.rowsPerPage;
+    }
+
+    Promise.all([
+        database.getQuestionsByTitle((current - 1) * rowsPerPage, current * rowsPerPage, bTitle),
+        database.getQuestionsSize()
+    ]).then(function (results) {
+        bTitle = -bTitle;
+        var paginator = new pagination.SearchPaginator({ prelink: '/questions/title', current: current, rowsPerPage: rowsPerPage, totalResult: results[1] });
+        var text = new String();
+        text = paginator.render();
+        res.render('questions/list.hbs', { questions: results[0], page: text });
+    })
+});
+
+
+router.get('/questions/update', function (req, res) {
+    var current = 1;
+    if (req.query.page) {
+        current = req.query.page;
+    }
+    if (req.query.rowsPerPage) {
+        rowsPerPage = req.query.rowsPerPage;
+    }
+
+    Promise.all([
+        database.getQuestionsByLastUpdate((current - 1) * rowsPerPage, current * rowsPerPage, bUpdate),
+        database.getQuestionsSize()
+    ]).then(function (results) {
+        bUpdate = - bUpdate;
+        var paginator = new pagination.SearchPaginator({ prelink: '/questions/update', current: current, rowsPerPage: rowsPerPage, totalResult: results[1] });
+        var text = new String();
+        text = paginator.render();
+        res.render('questions/list.hbs', { questions: results[0], page: text });
+    })
+});
+
+router.get('/questions/rating', function (req, res) {
+    var current = 1;
+    if (req.query.page) {
+        current = req.query.page;
+    }
+    if (req.query.rowsPerPage) {
+        rowsPerPage = req.query.rowsPerPage;
+    }
+
+    Promise.all([
+        database.getTopQuestions((current - 1) * rowsPerPage, current * rowsPerPage, bRating),
+        database.getQuestionsSize()
+    ]).then(function (results) {
+        bRating = -bRating;
+        var paginator = new pagination.SearchPaginator({ prelink: '/questions/rating', current: current, rowsPerPage: rowsPerPage, totalResult: results[1] });
+        var text = new String();
+        text = paginator.render();
+        res.render('questions/list.hbs', { questions: results[0], page: text });
+    })
 });
 
 router.get('/questions/search', function (req, res) {
@@ -45,7 +128,7 @@ router.get('/questions/top', function (req, res) {
 
     const topItems = config.get("rating:topItems");
     Promise.all([
-        database.getTopQuestions(topItems),
+        database.getTopQuestions(0, topItems, -1),
         database.getTopAnswers(topItems)
     ]).then(function (results) {
         var totalTop = new Array();
