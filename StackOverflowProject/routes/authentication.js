@@ -4,6 +4,8 @@ var User = require('../models/user');
 var database = require('../database/index');
 var nodemailer = require('nodemailer');
 var emailSender = require('../utils/emailSender');
+var passport = require('passport');
+
 
 router.get('/auth/register', function (req, res) {
     res.render('authentication/register.hbs');
@@ -51,5 +53,17 @@ router.get('/auth/logout', function (req, res) {
     req.session.destroy();
     res.redirect('/');
 });
+
+router.get('/auth/google', passport.authenticate('google', {
+    scope: ['https://www.googleapis.com/auth/userinfo.profile']
+}));
+
+router.get('/auth/google/callback',
+    passport.authenticate('google', { failureRedirect: '/' }),
+    (req, res) => {
+        req.session.token = req.user.token
+        res.redirect('/');
+    }
+);
 
 module.exports = router;

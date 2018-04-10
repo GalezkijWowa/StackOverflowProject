@@ -30,6 +30,9 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="config\auth.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="config\index.js">
       <SubType>Code</SubType>
     </Compile>
@@ -287,6 +290,9 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="public\stylesheets\main.css" />
+    <Content Include="public\stylesheets\socials.css">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="README.md" />
     <Content Include="views\admin\tagList.hbs">
       <SubType>Code</SubType>

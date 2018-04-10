@@ -12,7 +12,10 @@ var hbs = require('hbs'),
     mongoose = require("mongoose"),
     routes = require('../routes'),
     exphbs = require('express3-handlebars'),
-    session = require('express-session')
+    session = require('express-session'),
+    passport = require('passport'),
+    auth = require('../config/auth')
+
 
 module.exports = function (app, express) {
     //HBS Helpers
@@ -39,8 +42,11 @@ module.exports = function (app, express) {
     app.use(logger('dev'));
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false }));
-    app.use(cookieParser());
+    
     app.use(express.static(path.join(__dirname, '../public')));
+
+    auth(passport);
+    app.use(passport.initialize());
 
     mongoose.connect(config.get('db:connection'));
 
@@ -51,6 +57,7 @@ module.exports = function (app, express) {
         cookie: config.get('session:cookie'),
         store: new MongoStore({ url: config.get('db:connection') })
     }));
+    app.use(cookieParser());
     app.use(require("./loadUser"));
     app.use(routes);
 

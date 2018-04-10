@@ -125,7 +125,6 @@ router.get('/questions/search', function (req, res) {
 });
 
 router.get('/questions/top', function (req, res) {
-
     const topItems = config.get("rating:topItems");
     Promise.all([
         database.getTopQuestions(0, topItems, -1),
@@ -145,10 +144,8 @@ router.get('/questions/top', function (req, res) {
             }
         });
         totalTop = totalTop.slice(0, topItems);
-        console.log(totalTop);
         res.render('questions/top.hbs', {topList: totalTop});
     })
-    
 });
 
 router.get('/questions/:id', function (req, res) {
