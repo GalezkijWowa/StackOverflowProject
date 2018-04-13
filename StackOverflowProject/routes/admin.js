@@ -12,7 +12,6 @@ router.get('/admin/tags', function (req, res) {
 
 router.post('/admin/createTag', function (req, res) {
     database.checkTag(req.body.tagName).then(function (tag) {
-        console.log(tag);
         if (!tag) {
             database.createTag(req.body.tagName).then();
         }
@@ -22,7 +21,6 @@ router.post('/admin/createTag', function (req, res) {
 
 router.post('/admin/editTag', function (req, res) {   
     database.checkTag(req.body.tagName).then(function (tag) {
-        console.log(tag);
         if (!tag) {
             Promise.all([
                 database.editTag(req.body.tagId, req.body.tagName),

@@ -68,7 +68,6 @@ router.post('/profile/deleteAnswer', function (req, res) {
 });
 
 router.post('/profile/deleteQuestion', function (req, res) {
-    console.log(req.body.questionId);
     Promise.all([
         database.deleteQuestion(req.body.questionId),
         database.deleteAnswers(req.body.questionId),

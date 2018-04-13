@@ -3,16 +3,16 @@ var User = require("../models/user");
 var Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
 
-var addUser = function (username, password, email, role) {
+var addUser = function (username, password, email, role, access=false) {
     var user = new User({
         username: username,
         password: password,
         email: email,
-        role: role
+        role: role, 
+        access: access
     });
     return user.save();
 }
-
 var openUserAccess = function (userId) {
     User.update({ _id: userId }, { access: true }).exec();
 }

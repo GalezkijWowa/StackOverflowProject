@@ -25,7 +25,6 @@ var sendMessage = function (email, host, userId) {
         var source = data.toString();
         var myHtml = renderToString(source, { link: link });
 
-        console.log(typeof myHtml);
         mailOptions = {
             to: email,
             subject: "Please confirm your Email account",
@@ -44,7 +43,6 @@ function renderToString(source, data) {
 
 var verifyUser = function (key) {
     return database.checkKey(key).then(function (key) {
-        console.log(key);
         if (key) {
             database.openUserAccess(key.user);
             database.deleteKey(key.key);

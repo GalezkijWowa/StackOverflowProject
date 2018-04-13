@@ -2,6 +2,7 @@
   "name": "stack-overflow-project",
   "version": "0.0.0",
   "private": true,
+  "start": "set HTTPS=true",
   "scripts": {
     "start": "node app"
   },

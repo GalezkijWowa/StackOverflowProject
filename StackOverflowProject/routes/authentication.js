@@ -12,9 +12,10 @@ router.get('/auth/register', function (req, res) {
 });
 router.post('/auth/register', function (req, res) {
     if (req.body.password == req.body.confirmpassword) {
-        database.addUser(req.body.username, req.body.password, req.body.email, "user").then(function (user) {
+        database.addUser(req.body.username, req.body.password, req.body.email, "user", req.body.access).then(function (user) {
             emailSender.sendMessage(req.body.email, req.get('host'), user._id);
-            res.redirect("/auth/login");
+            req.session.user = user._id;
+            res.redirect("/");
         });
     }
     else {
@@ -55,15 +56,21 @@ router.get('/auth/logout', function (req, res) {
 });
 
 router.get('/auth/google', passport.authenticate('google', {
-    scope: ['https://www.googleapis.com/auth/userinfo.profile']
+    scope: ['https://www.googleapis.com/auth/userinfo.profile',
+        'https://www.googleapis.com/auth/userinfo.email']
 }));
 
+//router.get('/auth/facebook', passport.authenticate('facebook'));
+
+//router.get('/auth/facebook/callback',
+//    passport.authenticate('facebook', {
+//        successRedirect: '/',
+//        failureRedirect: '/login'
+//    }));
+
 router.get('/auth/google/callback',
-    passport.authenticate('google', { failureRedirect: '/' }),
-    (req, res) => {
-        req.session.token = req.user.token
-        res.redirect('/');
-    }
-);
+    passport.authenticate('google', { failureRedirect: '/' }), function (req, res) {
+        res.render("authentication/googlePassword.hbs", { username: req.user.profile.displayName, email: req.user.profile.emails[0].value });
+    });
 
 module.exports = router;

@@ -5,7 +5,6 @@ var hbs = require('hbs'),
     debug = require('debug'),
     path = require('path'),
     logger = require('morgan'),
-    http = require('http'),
     config = require('../config'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
@@ -14,7 +13,8 @@ var hbs = require('hbs'),
     exphbs = require('express3-handlebars'),
     session = require('express-session'),
     passport = require('passport'),
-    auth = require('../config/auth')
+    auth = require('../config/auth'),
+    authFaceBook = require('../config/authFacebook')
 
 
 module.exports = function (app, express) {
@@ -48,8 +48,10 @@ module.exports = function (app, express) {
     auth(passport);
     app.use(passport.initialize());
 
-    mongoose.connect(config.get('db:connection'));
+    authFaceBook(passport);
+    app.use(passport.initialize());
 
+    mongoose.connect(config.get('db:connection'));
     var MongoStore = require('connect-mongo')(session);
     app.use(session({
         secret: config.get('session:secret'),
