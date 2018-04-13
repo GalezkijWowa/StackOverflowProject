@@ -21,6 +21,10 @@ var getUserByName = function (username) {
     return User.findOne({ username: username });
 }
 
+var getUserByEmail = function (email, username) {
+    return User.findOne({ email: email, username: username });
+}
+
 var getUserById = function (userid) {
     return User.findOne({ _id: userid });
 }
@@ -39,5 +43,6 @@ module.exports.getAllUsers = getAllUsers;
 module.exports.openUserAccess = openUserAccess;
 module.exports.setUserReputation = setUserReputation;
 module.exports.getUserById = getUserById;
+module.exports.getUserByEmail = getUserByEmail;
 module.exports.getUserByName = getUserByName;
 module.exports.addUser = addUser;

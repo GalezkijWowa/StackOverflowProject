@@ -14,7 +14,8 @@ var hbs = require('hbs'),
     session = require('express-session'),
     passport = require('passport'),
     auth = require('../config/auth'),
-    authFaceBook = require('../config/authFacebook')
+    authFaceBook = require('../config/authFacebook'),
+    authTwitter = require('../config/authTwitter')
 
 
 module.exports = function (app, express) {
@@ -49,6 +50,9 @@ module.exports = function (app, express) {
     app.use(passport.initialize());
 
     authFaceBook(passport);
+    app.use(passport.initialize());
+
+    authTwitter(passport);
     app.use(passport.initialize());
 
     mongoose.connect(config.get('db:connection'));

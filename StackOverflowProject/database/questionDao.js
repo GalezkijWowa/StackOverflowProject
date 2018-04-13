@@ -51,11 +51,9 @@ var addQuestionVote = function (questionId, userId, points) {
 var checkQuestionVote = function (questionId, userId) {
     return Vote.findOne({ question: questionId, author: userId }).exec();
 }
-
 var deleteQuestionVotes = function (quesionId) {
     return Vote.remove({ question: quesionId }).exec();
 }
-
 var getQuestionsByTag = function (tagName) {
     var result = [];
     return QuestionTag.find({ tagname: tagName }).then(function (qTags) {

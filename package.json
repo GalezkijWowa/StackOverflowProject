@@ -30,6 +30,7 @@
     "passport-facebook": "^2.1.1",
     "passport-facebook-token": "^3.3.0",
     "passport-google-oauth": "^1.0.0",
+    "passport-twitter": "^1.0.4",
     "path": "^0.12.7",
     "serve-favicon": "^2.4.5",
     "session": "^0.1.0",

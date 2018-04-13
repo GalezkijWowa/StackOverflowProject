@@ -36,6 +36,9 @@
     <Compile Include="config\authFacebook.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="config\authTwitter.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="config\index.js">
       <SubType>Code</SubType>
     </Compile>
@@ -262,9 +265,14 @@
     <Compile Include="utils\emailSender.js">
       <SubType>Code</SubType>
     </Compile>
+    <Content Include="abels-cert.pem" />
+    <Content Include="abels-csr.pem" />
+    <Content Include="abels-key.pem" />
     <Content Include="config\config.json">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="hacksparrow-cert.pem" />
+    <Content Include="hacksparrow-key.pem" />
     <Content Include="package.json" />
     <Content Include="public\bootstrap-3.3.7-dist\css\bootstrap-theme.css" />
     <Content Include="public\bootstrap-3.3.7-dist\css\bootstrap-theme.css.map" />
@@ -297,12 +305,10 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="README.md" />
-    <Content Include="certificate.pem" />
-    <Content Include="privatekey.pem" />
     <Content Include="views\admin\tagList.hbs">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="views\authentication\googlePassword.hbs">
+    <Content Include="views\authentication\oauthPassword.hbs">
       <SubType>Code</SubType>
     </Content>
     <Content Include="views\authentication\login.hbs">

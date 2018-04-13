@@ -11,6 +11,7 @@ module.exports.getAllBadges = badgeDao.getAllBadges;
 module.exports.addBadge = badgeDao.addBadge;
 module.exports.checkBadge = badgeDao.checkBadge;
 
+module.exports.getUserByEmail = userDao.getUserByEmail;
 module.exports.addUser = userDao.addUser;
 module.exports.getUserByName = userDao.getUserByName;
 module.exports.getUserById = userDao.getUserById;

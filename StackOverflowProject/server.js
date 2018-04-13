@@ -9,10 +9,10 @@ var express = require('express'),
 
 setInterval(require('./utils/badgeScript'), config.get('badgeScript:period'));
 
-http.createServer(app).listen(config.get('port'));
+var options = {
+    key: fs.readFileSync('abels-key.pem'),
+    cert: fs.readFileSync('abels-cert.pem')
+}
 
-//var options = {
-//    cert: fs.readFileSync('./certificate.pem'),
-//    key: fs.readFileSync('./privatekey.pem')
-//}
-//https.createServer(options, app).listen(config.get('port'));
+http.createServer(app).listen(config.get('port'));
+https.createServer(options, app).listen(8080);
