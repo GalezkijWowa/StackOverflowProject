@@ -7,7 +7,8 @@ var express = require('express'),
     middleware = require('./middleware')(app, express),
     fs = require('fs');
 
-setInterval(require('./utils/badgeScript'), config.get('badgeScript:period'));
+setInterval(require('./utils/search/indexManager'), config.get('period:indexManager'));
+setInterval(require('./utils/badgeScript'), config.get('period:badgeScript'));
 
 var options = {
     key: fs.readFileSync('abels-key.pem'),

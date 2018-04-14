@@ -70,4 +70,3 @@ var tryAddBadge = function (userId, badgeName, badgeIcon) {
 }
 
 module.exports = restore;
-module.exports = restore;

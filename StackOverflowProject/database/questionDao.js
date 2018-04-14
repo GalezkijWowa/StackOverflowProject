@@ -25,7 +25,7 @@ var addQuestion = function (author, authorname, title, description) {
     return question.save();
 }
 
-var getAllQuestions = function (from, to) {
+var getQuestionsRange = function (from, to) {
     return result = Question.find({}).skip(from).limit(to-from).exec();
 }
 
@@ -77,6 +77,10 @@ var getQuestionsSize = function () {
     return Question.count().exec();
 }
 
+var getAllQuestions = function() {
+    return Question.find({}).exec();
+}
+
 var searchQuestions = function (text) {
     return Question.find({
         $or: [
@@ -86,6 +90,7 @@ var searchQuestions = function (text) {
     }).exec();
 }
 
+module.exports.getAllQuestions = getAllQuestions;
 module.exports.getQuestionsSize = getQuestionsSize
 module.exports.getQuestionsByTitle = getQuestionsByTitle;
 module.exports.getQuestionsByDate = getQuestionsByDate;
@@ -96,7 +101,7 @@ module.exports.deleteQuestionVotes = deleteQuestionVotes;
 module.exports.checkQuestionVote = checkQuestionVote;
 module.exports.addQuestion = addQuestion;
 module.exports.getQuestionsByTag = getQuestionsByTag;
-module.exports.getAllQuestions = getAllQuestions;
+module.exports.getQuestionsRange = getQuestionsRange;
 module.exports.getQuestion = getQuestion;
 module.exports.editQuestion = editQuestion;
 module.exports.deleteQuestion = deleteQuestion;

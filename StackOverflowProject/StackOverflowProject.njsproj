@@ -265,6 +265,12 @@
     <Compile Include="utils\emailSender.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="utils\search\indexManager.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="utils\search\questionSearcher.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="utils\smsSender.js">
       <SubType>Code</SubType>
     </Compile>
@@ -387,6 +393,7 @@
     <Folder Include="public\javascripts\" />
     <Folder Include="public\stylesheets\" />
     <Folder Include="routes\" />
+    <Folder Include="utils\search\" />
     <Folder Include="views\" />
     <Folder Include="views\authentication\" />
     <Folder Include="views\main\" />

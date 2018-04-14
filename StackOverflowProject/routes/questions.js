@@ -6,7 +6,9 @@ var Question = require("../models/question");
 var Answer = require("../models/answer");
 var config = require('../config');
 var pagination = require('pagination');
+var searcher = require('../utils/search/questionSearcher');
 
+var rowsPerPage = 3;
 var bTitle = -1;
 var bDate = -1;
 var bUpdate = -1;
@@ -23,7 +25,7 @@ router.get('/questions/all', function (req, res) {
     }
 
     Promise.all([
-        database.getAllQuestions((current - 1) * rowsPerPage, current * rowsPerPage),
+        database.getQuestionsRange((current - 1) * rowsPerPage, current * rowsPerPage),
         database.getQuestionsSize()
     ]).then(function (results) {
         var paginator = new pagination.SearchPaginator({ prelink: '/questions/all', current: current, rowsPerPage: rowsPerPage, totalResult: results[1] });
@@ -35,7 +37,6 @@ router.get('/questions/all', function (req, res) {
 
 router.get('/questions/date', function (req, res) {
     var current = 1;
-    var rowsPerPage = 3;
     if (req.query.page) {
         current = req.query.page;
     }
@@ -75,7 +76,6 @@ router.get('/questions/title', function (req, res) {
         res.render('questions/list.hbs', { questions: results[0], page: text });
     })
 });
-
 
 router.get('/questions/update', function (req, res) {
     var current = 1;
@@ -120,8 +120,22 @@ router.get('/questions/rating', function (req, res) {
 });
 
 router.get('/questions/search', function (req, res) {
-    database.searchQuestions(req.query.text).then(function (questions) {
-        res.render('questions/list', {questions: questions})
+    searcher.search(req.query.text).then(function (body) {
+        var questions = body.hits.hits.map(function(element) {
+            return {
+                _id: element._id,
+                title: element._source.title,
+                description: element._source.description,
+                author: element._source.author,
+                authorname: element._source.authorname,
+                dateofcreation: element._source.dateofcreation,
+                dateofupdate: element._source.dateofupdate,
+                rating: element._source.rating
+            };
+        });
+        res.render('questions/list', { questions: questions })
+    }).catch(function (err) {
+        res.redirect('/');
     });
 });
 
