@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="../../public/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../public/stylesheets/socials.css" />
+    <meta charset="utf-8" />
+    <title>Code</title>
+</head>
+<body>
+    {{> layout}}
+    <div class="container">
+        <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="panel-title">Your Code</div>
+                </div>
+                <div class="panel-body">
+                    <form id="phoneVerify" class="form-horizontal" role="form" action="/auth/verifyPhone" method="post">
+                        <div class="form-group">
+                            <div class="col-md-9">
+                                <label>Insert your code here!</label>
+                                <input type="text" class="form-control" name="code">
+                            </div>
+                        </div>
+                        <div class="form-group" hidden="hidden">
+                            <div class="col-md-9">
+                                <input class="form-control" name="userId" value="{{userId}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-3 col-md-9">
+                                <p><button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> Confirm</button></p>
+                            </div>
+                        </div>
+                    </form>
+                    <hr />
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

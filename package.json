@@ -32,8 +32,10 @@
     "passport-google-oauth": "^1.0.0",
     "passport-twitter": "^1.0.4",
     "path": "^0.12.7",
+    "randomstring": "^1.1.5",
     "serve-favicon": "^2.4.5",
     "session": "^0.1.0",
-    "tags-input": "^1.1.1"
+    "tags-input": "^1.1.1",
+    "twilio": "^3.14.0"
   }
 }

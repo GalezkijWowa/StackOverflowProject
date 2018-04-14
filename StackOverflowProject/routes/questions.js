@@ -6,7 +6,6 @@ var Question = require("../models/question");
 var Answer = require("../models/answer");
 var config = require('../config');
 var pagination = require('pagination');
-var rowsPerPage = 3;
 
 var bTitle = -1;
 var bDate = -1;
@@ -15,6 +14,7 @@ var bRating = -1;
 
 router.get('/questions/all', function (req, res) {
     var current = 1;
+    var rowsPerPage = 3;
     if (req.query.page) {
         current = req.query.page;
     }
@@ -35,6 +35,7 @@ router.get('/questions/all', function (req, res) {
 
 router.get('/questions/date', function (req, res) {
     var current = 1;
+    var rowsPerPage = 3;
     if (req.query.page) {
         current = req.query.page;
     }

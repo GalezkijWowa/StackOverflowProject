@@ -5,15 +5,26 @@ var database = require('../database/index');
 var nodemailer = require('nodemailer');
 var emailSender = require('../utils/emailSender');
 var passport = require('passport');
+var config = require('../config');
+var smsSender = require('../utils/smsSender');
+var mySexyCode;
 
+router.post('/auth/verifyPhone', function (req, res) {
+    if (req.body.code == req.session.code) {
+        req.session.user = req.body.userId;
+        res.redirect('/');
+    } else {
+        res.render('authentication/verifyPhone.hbs', { userId: req.body.userId });
+    }
+});
 
 router.get('/auth/register', function (req, res) {
     res.render('authentication/register.hbs');
 });
+
 router.post('/auth/register', function (req, res) {
     if (req.body.password == req.body.confirmpassword) {
-        database.addUser(req.body.username, req.body.password, req.body.email, "user", req.body.access).then(function (user) {
-            console.log(typeof req.body.access);
+        database.addUser(req.body.username, req.body.password, req.body.phoneNumber, req.body.email, "user", req.body.access).then(function(user) {
             if (req.body.access == "false") {
                 emailSender.sendMessage(req.body.email, req.get('host'), user._id);
             } else {
@@ -26,7 +37,6 @@ router.post('/auth/register', function (req, res) {
         res.redirect("/auth/register");
     }
 });
-
 router.get('/auth/verify/:id', function (req, res) {
     emailSender.verifyUser(req.params.id);
     res.redirect('/auth/login');
@@ -39,12 +49,11 @@ router.get('/auth/login', function (req, res) {
 router.post('/auth/login', function (req, res) {
     var username = req.body.username;
     var password = req.body.password;
-
     database.getUserByName(username).then(function (user) {
         if (user) {
             if (user.checkPassword(password) && user.access) {
-                req.session.user = user._id;
-                res.redirect("/");
+                req.session.code = smsSender.sendSms(user.phonenumber); //user.phonenumber
+                res.render('authentication/verifyPhone.hbs', {userId: user._id});
             } else {
                 res.send('ERROR! Incorrect password or no email confirmation');
             }

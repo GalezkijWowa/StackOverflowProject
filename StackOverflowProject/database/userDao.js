@@ -3,10 +3,11 @@ var User = require("../models/user");
 var Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
 
-var addUser = function (username, password, email, role, access=false) {
+var addUser = function (username, password, phone, email, role, access=false) {
     var user = new User({
         username: username,
         password: password,
+        phonenumber: phone,
         email: email,
         role: role, 
         access: access
